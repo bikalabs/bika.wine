@@ -1,0 +1,47 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="bika.wine">
+
+    <browser:page
+      for="bika.wine.interfaces.IRegions"
+      name="folder_view"
+      class=".bika_regions.RegionsView"
+      permission="bika.lims.ManageBika"
+      layer="bika.lims.interfaces.IBikaLIMS"
+    />
+
+    <browser:page
+      for="bika.wine.interfaces.ISubGroups"
+      name="folder_view"
+      class=".bika_subgroups.SubGroupsView"
+      permission="bika.lims.ManageBika"
+      layer="bika.lims.interfaces.IBikaLIMS"
+    />
+
+    <browser:page
+      for="bika.wine.interfaces.IWineTypes"
+      name="folder_view"
+      class=".bika_winetypes.WineTypesView"
+      permission="bika.lims.ManageBika"
+      layer="bika.lims.interfaces.IBikaLIMS"
+    />
+
+    <browser:page
+      for="bika.wine.interfaces.ITransportConditions"
+      name="folder_view"
+      class=".bika_transportconditions.TransportConditionsView"
+      permission="bika.lims.ManageBika"
+      layer="bika.lims.interfaces.IBikaLIMS"
+    />
+
+    <browser:page
+      for="bika.wine.interfaces.IStorageConditions"
+      name="folder_view"
+      class=".bika_storageconditions.StorageConditionsView"
+      permission="bika.lims.ManageBika"
+      layer="bika.lims.interfaces.IBikaLIMS"
+    />
+
+</configure>

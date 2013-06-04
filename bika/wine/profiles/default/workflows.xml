@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<object name="portal_workflow" meta_type="Plone Workflow Tool">
+  <property name="title" purge="False">Contains workflow definitions for your portal</property>
+
+  <bindings>
+
+    <type type_id="Country">
+      <bound-workflow workflow_id="bika_one_state_workflow"/>
+      <bound-workflow workflow_id="bika_inactive_workflow"/>
+    </type>
+    <type type_id="Region">
+      <bound-workflow workflow_id="bika_one_state_workflow"/>
+      <bound-workflow workflow_id="bika_inactive_workflow"/>
+    </type>
+    <type type_id="Regions"/>
+
+    <type type_id="SubGroups"/>
+    <type type_id="SubGroup">
+      <bound-workflow workflow_id="bika_one_state_workflow"/>
+      <bound-workflow workflow_id="bika_inactive_workflow"/>
+    </type>
+
+    <type type_id="WineTypes"/>
+    <type type_id="WineType">
+      <bound-workflow workflow_id="bika_one_state_workflow"/>
+      <bound-workflow workflow_id="bika_inactive_workflow"/>
+    </type>
+
+    <type type_id="TransportConditions"/>
+    <type type_id="TransportCondition">
+      <bound-workflow workflow_id="bika_one_state_workflow"/>
+      <bound-workflow workflow_id="bika_inactive_workflow"/>
+    </type>
+
+    <type type_id="StorageConditions"/>
+    <type type_id="StorageCondition">
+      <bound-workflow workflow_id="bika_one_state_workflow"/>
+      <bound-workflow workflow_id="bika_inactive_workflow"/>
+    </type>
+
+  </bindings>
+
+</object>

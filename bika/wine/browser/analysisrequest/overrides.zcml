@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="bika">
+
+    <adapter
+      factory="bika.wine.browser.batch.ClientContactVocabularyFactory"
+      provides="bika.lims.interfaces.IDisplayListVocabulary"
+      for="bika.lims.interfaces.IBatch"
+      name="getContacts"
+    />
+
+    <browser:page
+      for="bika.lims.interfaces.IBatch"
+      name="workflow_action"
+      class="bika.wine.browser.batch.workflowaction.BatchWorkflowAction"
+      permission="zope.Public"
+      layer="bika.lims.interfaces.IBikaLIMS"
+    />
+
+</configure>

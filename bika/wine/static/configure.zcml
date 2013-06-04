@@ -1,0 +1,39 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    i18n_domain="bika.wine">
+
+  <!-- Zope 3 browser resources -->
+
+  <browser:resourceDirectory
+      name="bika.wine.images"
+      directory="images"
+      layer="bika.lims.interfaces.IBikaLIMS"
+      />
+
+  <browser:resourceDirectory
+      name="bika.wine.css"
+      directory="css"
+      layer="bika.lims.interfaces.IBikaLIMS"
+      />
+
+  <browser:resourceDirectory
+      name="bika.wine.js"
+      directory="js"
+      layer="bika.lims.interfaces.IBikaLIMS"
+      />
+
+  <browser:resource
+      name="beep.mp3"
+      file="beep.mp3"
+      layer="bika.lims.interfaces.IBikaLIMS"
+      />
+
+  <browser:resource
+      name="beep.wav"
+      file="beep.wav"
+      layer="bika.lims.interfaces.IBikaLIMS"
+      />
+
+</configure>

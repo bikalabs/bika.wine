@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="bika.wine">
+
+<!--
+	All permissions are defined here.
+	They are also defined in permissions.py.
+	The two files must be kept in sync.
+-->
+
+<permission id="bika.wine.permissions.AddCountry" title="BIKA: Add Country"/>
+<permission id="bika.wine.permissions.AddRegion" title="BIKA: Add Region"/>
+<permission id="bika.wine.permissions.AddSubGroup" title="BIKA: Add Sub-group"/>
+<permission id="bika.wine.permissions.AddWineType" title="BIKA: Add Wine type"/>
+<permission id="bika.wine.permissions.AddTransportCondition" title="BIKA: Add Transport condition"/>
+<permission id="bika.wine.permissions.AddStorageCondition" title="BIKA: Add Storage condition"/>
+
+</configure>

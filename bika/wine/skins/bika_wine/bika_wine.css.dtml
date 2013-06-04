@@ -1,0 +1,41 @@
+/*<dtml-with bika_wine>*/
+
+
+body {
+
+}
+
+/*************
+ Alerts dialog
+ *************/
+.alerts_table {
+  padding: 15px 10px;
+}
+.alerts_table th {
+    text-align: left !important;
+    font-weight: bold;
+}
+.alerts_table td {
+    text-align: left !important;
+    padding: 0px 2px 0px 2px;
+}
+
+
+/*************
+ Batch Book
+ *************/
+
+.subgroup_Pre-Bottling {
+    background-color: #F2F2F2;
+}
+
+.subgroup_Bottling {
+    background-color: #F4FFA7;
+}
+
+/* Cells which do not exist in the row's AR, will get this class */
+.empty {
+}
+
+
+/* </dtml-with> */

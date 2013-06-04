@@ -1,0 +1,56 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="bika.wine">
+
+  <genericsetup:registerProfile
+      name="default"
+      title="Bika Wine LIMS"
+      directory="profiles/default"
+      description='Extension profile for the Bika Wine LIMS'
+      provides="Products.GenericSetup.interfaces.EXTENSION"/>
+
+  <genericsetup:importStep
+      name="setupVarious"
+      title="Bika Wine: Various"
+      description="Final site configuration actions"
+      handler="bika.wine.setuphandlers.setupVarious">
+    <depends name="content" />
+    <depends name="toolset" />
+  </genericsetup:importStep>
+
+  <genericsetup:importStep
+      name="setupPermissions"
+      title="Bika Wine: Setup Permissions"
+      description="Configure default permissions"
+      handler="bika.wine.setuphandlers.setupPermissions">
+    <depends name="content" />
+  </genericsetup:importStep>
+
+  <genericsetup:importStep
+      name="setupCatalogs"
+      title="Bika Wine: Setup Catalogs"
+      description="Create and configure catalogs and indexes"
+      handler="bika.wine.setuphandlers.setupCatalogs">
+    <depends name="toolset" />
+  </genericsetup:importStep>
+
+  <genericsetup:importStep
+      name="setupTestContent"
+      title="Bika Wine: Setup Content"
+      description="Create and configure default content"
+      handler="bika.wine.setuphandlers.setupTestContent">
+    <depends name="content" />
+    <depends name="toolset" />
+  </genericsetup:importStep>
+
+<!--
+  <genericsetup:importStep
+      name="setupGroupsAndRoles"
+      title="Bika Wine: Groups And Roles"
+      description="Create system groups and roles."
+      handler="bika.wine.setuphandlers.setupGroupsAndRoles">
+  </genericsetup:importStep>
+-->
+
+</configure>

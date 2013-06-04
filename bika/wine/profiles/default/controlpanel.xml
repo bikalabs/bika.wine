@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+
+<object name="portal_controlpanel" meta_type="Plone Control Panel Tool"
+ xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+ i18n:domain="plone">
+
+ <configlet title="Regions" action_id="bika_regions"
+    appId="bika.wine" category="bika" condition_expr=""
+    icon_expr="string:++resource++bika.lims.images/region.png"
+    url_expr="string:$portal_url/bika_setup/bika_regions"
+    visible="True"
+    i18n:attributes="title">
+  <permission>BIKA: Manage Bika</permission>
+ </configlet>
+
+ <configlet title="Sub-groups" action_id="bika_subgroups"
+    appId="bika.wine" category="bika" condition_expr=""
+    icon_expr="string:++resource++bika.lims.images/batch.png"
+    url_expr="string:$portal_url/bika_setup/bika_subgroups"
+    visible="True"
+    i18n:attributes="title">
+  <permission>BIKA: Manage Bika</permission>
+ </configlet>
+
+ <configlet title="Wine types" action_id="bika_winetypes"
+    appId="bika.wine" category="bika" condition_expr=""
+    icon_expr="string:++resource++bika.wine.images/winetype.png"
+    url_expr="string:$portal_url/bika_setup/bika_winetypes"
+    visible="True"
+    i18n:attributes="title">
+  <permission>BIKA: Manage Bika</permission>
+ </configlet>
+
+ <configlet title="Transport conditions" action_id="bika_transportconditions"
+    appId="bika.wine" category="bika" condition_expr=""
+    icon_expr="string:++resource++bika.wine.images/transportcondition.png"
+    url_expr="string:$portal_url/bika_setup/bika_transportconditions"
+    visible="True"
+    i18n:attributes="title">
+  <permission>BIKA: Manage Bika</permission>
+ </configlet>
+
+ <configlet title="Storage conditions" action_id="bika_storageconditions"
+    appId="bika.wine" category="bika" condition_expr=""
+    icon_expr="string:++resource++bika.wine.images/storagecondition.png"
+    url_expr="string:$portal_url/bika_setup/bika_storageconditions"
+    visible="True"
+    i18n:attributes="title">
+  <permission>BIKA: Manage Bika</permission>
+ </configlet>
+
+</object>

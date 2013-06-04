@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<object name="portal_types" meta_type="Plone Types Tool" purge="False">
+ <property name="title">Controls the available content types in your portal</property>
+
+ <object name="Batch" meta_type="Factory-based Type Information with dynamic views" purge="False"/>
+
+ <object name="Regions" meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="Country" meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="Region" meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="SubGroups" meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="SubGroup" meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="WineTypes" meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="WineType" meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="TransportConditions" meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="TransportCondition" meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="StorageConditions" meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="StorageCondition" meta_type="Factory-based Type Information with dynamic views"/>
+
+</object>

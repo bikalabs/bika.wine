@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="bika">
+
+<genericsetup:upgradeStep
+        title="Changes to workflows and controlpanel"
+        description="Added country/region"
+        source="1000"
+        destination="1001"
+        handler="bika.wine.upgrade.to1001.upgrade"
+        sortkey="1"
+        profile="bika.wine:default"/>
+
+</configure>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<object name="portal_skins"
+        meta_type="Plone Skins Tool"
+        allow_any="False"
+        cookie_persistence="False"
+        default_skin="Sunburst Theme"
+        request_varname="plone_skin">
+
+  <object name="bika_wine"
+          meta_type="Filesystem Directory View"
+          directory="bika.wine:skins/bika_wine"/>
+
+  <skin-path name="*">
+    <layer name="bika_wine" insert-after="custom"/>
+  </skin-path>
+
+</object>

@@ -1,0 +1,23 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="bika.wine">
+
+    <include package="archetypes.schemaextender" />
+
+    <adapter factory=".analysisrequest.AnalysisRequestSchemaExtender" />
+    <adapter factory=".analysisrequest.AnalysisRequestSchemaModifier" />
+    <adapter factory=".batch.BatchSchemaExtender" />
+    <adapter factory=".batch.BatchSchemaModifier" />
+    <adapter factory=".sample.SampleSchemaExtender" />
+    <adapter factory=".sample.SampleSchemaModifier" />
+    <adapter factory=".sampletype.SampleTypeSchemaExtender" />
+    <adapter factory=".sampletype.SampleTypeSchemaModifier" />
+    <adapter factory=".samplepoint.SamplePointSchemaExtender" />
+    <adapter factory=".samplepoint.SamplePointSchemaModifier" />
+
+</configure>
