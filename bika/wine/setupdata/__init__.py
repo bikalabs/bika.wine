@@ -30,6 +30,7 @@ class SubGroups:
         ws = wb.get_sheet_by_name("Sub Groups")
         if not ws:
             logger.info("No SubGroups defined.")
+            return
         logger.info("Loading SubGroups...")
         folder = lsd.context.bika_setup.bika_subgroups
         rows = lsd.get_rows(ws, 3)
@@ -59,6 +60,7 @@ class StorageConditions:
         ws = wb.get_sheet_by_name("Storage Conditions")
         if not ws:
             logger.info("No Storage conditions defined.")
+            return
         logger.info("Loading Storage conditions...")
         folder = lsd.context.bika_setup.bika_storageconditions
         rows = lsd.get_rows(ws, 3)
@@ -87,6 +89,7 @@ class TransportConditions:
         ws = wb.get_sheet_by_name("Transport Conditions")
         if not ws:
             logger.info("No Transport conditions defined.")
+            return
         logger.info("Loading Transport conditions...")
         folder = lsd.context.bika_setup.bika_transportconditions
         rows = lsd.get_rows(ws, 3)
@@ -115,6 +118,7 @@ class WineTypes:
         ws = wb.get_sheet_by_name("Wine Types")
         if not ws:
             logger.info("No Wine types defined.")
+            return
         logger.info("Loading Wine types...")
         folder = lsd.context.bika_setup.bika_winetypes
         rows = lsd.get_rows(ws, 3)
@@ -143,6 +147,7 @@ class Regions:
         ws = wb.get_sheet_by_name("Regions")
         if not ws:
             logger.info("No Regions defined.")
+            return
         logger.info("Loading Regions...")
         folder = lsd.context.bika_setup.bika_regions
         rows = lsd.get_rows(ws, 3)
