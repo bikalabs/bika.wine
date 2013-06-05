@@ -75,9 +75,6 @@ class AnalysisRequestSchemaModifier(object):
             schema[field].required = False
             schema[field].widget.visible = False
 
-        # wine wants all review_states but, cancelled is cancelled.
-        schema['Batch'].widget.base_query = {'cancelled_state': 'active'}
-
         # Add timepicker to SamplingDate
         schema['SamplingDate'].widget.show_time = True
 

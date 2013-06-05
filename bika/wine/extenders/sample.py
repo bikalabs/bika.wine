@@ -62,4 +62,7 @@ class SampleSchemaModifier(object):
             schema[field].required = False
             schema[field].widget.visible = False
 
+        # Add timepicker to SamplingDate
+        schema['SamplingDate'].widget.show_time = True
+
         return schema
