@@ -28,7 +28,7 @@ class BatchBookView(BikaListingView):
         self.form_id = "list"
         self.page_start_index = 0
         self.show_categories = True
-        self.expand_all_categories = False
+        self.expand_all_categories = True
 
         self.insert_submit_button = False
 
