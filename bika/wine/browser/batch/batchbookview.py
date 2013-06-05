@@ -4,7 +4,6 @@ from bika.lims import bikaMessageFactory as _b
 from bika.lims import PloneMessageFactory as _p
 from bika.lims.browser.bika_listing import BikaListingView
 from bika.lims.permissions import EditResults
-from operator import itemgetter
 from Products.CMFCore.utils import getToolByName
 
 import re
@@ -28,6 +27,8 @@ class BatchBookView(BikaListingView):
         self.pagesize = 1000
         self.form_id = "list"
         self.page_start_index = 0
+        self.show_categories = True
+        self.expand_all_categories = False
 
         self.insert_submit_button = False
 
@@ -93,6 +94,7 @@ class BatchBookView(BikaListingView):
             if ar not in ars:
                 ars.append(ar)
 
+        self.categories = []
         keywords = []
         analyses = {}
         items = []
@@ -121,8 +123,13 @@ class BatchBookView(BikaListingView):
                 ar.absolute_url(), ar.Title())
 
             subgroup = ar.Schema().getField('SubGroup').get(ar)
-            sub_title = subgroup.Title() if subgroup else ''
+            sub_title = subgroup.Title() if subgroup else _(
+                'No Sub-group selected')
+            sub_sort = subgroup.getSortKey() if subgroup else '100'
             sub_class = re.sub(r"[^A-Za-z\w\d\-\_]", '', sub_title)
+
+            if [sub_sort, sub_title] not in self.categories:
+                self.categories.append([sub_sort, sub_title])
 
             review_state = wf.getInfoFor(ar, 'review_state')
             state_title = wf.getTitleForStateOnType(
@@ -132,6 +139,7 @@ class BatchBookView(BikaListingView):
                 'obj': ar,
                 'id': ar.id,
                 'uid': ar.UID(),
+                'category': sub_title,
                 'title': ar.Title(),
                 'type_class': 'contenttype-AnalysisRequest',
                 'url': ar.absolute_url(),
@@ -194,6 +202,9 @@ class BatchBookView(BikaListingView):
 
                 if kw['keyword'] not in items[i]['class']:
                     items[i]['class'][kw['keyword']] = 'empty'
+
+        self.categories.sort()
+        self.categories = [x[1] for x in self.categories]
 
         return items
 
