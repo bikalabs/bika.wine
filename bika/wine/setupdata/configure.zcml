@@ -1,0 +1,41 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+    <adapter
+      name="bika.wine"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      factory="bika.wine.setupdata.SetupDataSetList"
+      provides="bika.lims.interfaces.ISetupDataSetList"/>
+
+    <adapter
+      name="SubGroups"
+      factory="bika.wine.setupdata.SubGroups"
+      provides="bika.lims.interfaces.ISetupDataImporter"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
+
+    <adapter
+      name="StorageConditions"
+      factory="bika.wine.setupdata.StorageConditions"
+      provides="bika.lims.interfaces.ISetupDataImporter"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
+
+    <adapter
+      name="TransportConditions"
+      factory="bika.wine.setupdata.TransportConditions"
+      provides="bika.lims.interfaces.ISetupDataImporter"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
+
+    <adapter
+      name="WineTypes"
+      factory="bika.wine.setupdata.WineTypes"
+      provides="bika.lims.interfaces.ISetupDataImporter"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
+
+    <adapter
+      name="Regions"
+      factory="bika.wine.setupdata.Regions"
+      provides="bika.lims.interfaces.ISetupDataImporter"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
+
+</configure>
