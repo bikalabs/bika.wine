@@ -11,5 +11,6 @@
   <include package=".batch"/>
   <include package=".batchfolder"/>
   <include package=".client"/>
+  <include package=".country"/>
 
 </configure>
