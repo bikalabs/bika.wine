@@ -123,8 +123,7 @@ class BatchBookView(BikaListingView):
                 ar.absolute_url(), ar.Title())
 
             subgroup = ar.Schema().getField('SubGroup').get(ar)
-            sub_title = subgroup.Title() if subgroup else _(
-                'No Sub-group selected')
+            sub_title = subgroup.Title() if subgroup else 'None'
             sub_sort = subgroup.getSortKey() if subgroup else '100'
             sub_class = re.sub(r"[^A-Za-z\w\d\-\_]", '', sub_title)
 
