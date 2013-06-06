@@ -14,7 +14,7 @@ class BatchBookView(BikaListingView):
     def __init__(self, context, request):
         super(BatchBookView, self).__init__(context, request)
         self.icon = self.portal_url + \
-            "/++resource++bika.wine.images/batchbook.png"
+            "/++resource++bika.wine.images/batchbook_big.png"
         self.context_actions = {}
         self.contentFilter = {}
         self.title = context.Title()

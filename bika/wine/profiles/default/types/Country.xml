@@ -5,7 +5,7 @@
         i18n:domain="plone">
  <property name="title" i18n:translate="">Country</property>
  <property name="description"></property>
- <property name="content_icon">++resource++bika.wine.images/country.png</property>
+ <property name="content_icon">++resource++bika.wine.images/region.png</property>
  <property name="content_meta_type">Country</property>
  <property name="product">bika.wine</property>
  <property name="factory">addCountry</property>

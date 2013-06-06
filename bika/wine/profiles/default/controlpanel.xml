@@ -6,7 +6,7 @@
 
  <configlet title="Regions" action_id="bika_regions"
     appId="bika.wine" category="bika" condition_expr=""
-    icon_expr="string:++resource++bika.lims.images/region.png"
+    icon_expr="string:++resource++bika.wine.images/region.png"
     url_expr="string:$portal_url/bika_setup/bika_regions"
     visible="True"
     i18n:attributes="title">
