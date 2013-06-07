@@ -11,45 +11,36 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"/>
 
   <genericsetup:importStep
-      name="setupVarious"
+      name="setupWineVarious"
       title="Bika Wine: Various"
       description="Final site configuration actions"
-      handler="bika.wine.setuphandlers.setupVarious">
+      handler="bika.wine.setuphandlers.setupWineVarious">
     <depends name="content" />
     <depends name="toolset" />
   </genericsetup:importStep>
 
   <genericsetup:importStep
-      name="setupPermissions"
+      name="setupWinePermissions"
       title="Bika Wine: Setup Permissions"
       description="Configure default permissions"
-      handler="bika.wine.setuphandlers.setupPermissions">
+      handler="bika.wine.setuphandlers.setupWinePermissions">
     <depends name="content" />
   </genericsetup:importStep>
 
   <genericsetup:importStep
-      name="setupCatalogs"
+      name="setupWineCatalogs"
       title="Bika Wine: Setup Catalogs"
       description="Create and configure catalogs and indexes"
-      handler="bika.wine.setuphandlers.setupCatalogs">
-    <depends name="toolset" />
-  </genericsetup:importStep>
-
-  <genericsetup:importStep
-      name="setupTestContent"
-      title="Bika Wine: Setup Content"
-      description="Create and configure default content"
-      handler="bika.wine.setuphandlers.setupTestContent">
-    <depends name="content" />
+      handler="bika.wine.setuphandlers.setupWineCatalogs">
     <depends name="toolset" />
   </genericsetup:importStep>
 
 <!--
   <genericsetup:importStep
-      name="setupGroupsAndRoles"
+      name="setupWineGroupsAndRoles"
       title="Bika Wine: Groups And Roles"
       description="Create system groups and roles."
-      handler="bika.wine.setuphandlers.setupGroupsAndRoles">
+      handler="bika.wine.setuphandlers.setupWineGroupsAndRoles">
   </genericsetup:importStep>
 -->
 

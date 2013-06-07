@@ -13,7 +13,7 @@ class Empty:
     pass
 
 
-def setupVarious(context):
+def setupWineVarious(context):
     """ Setup Bika site structure """
 
     if context.readDataFile('bika.wine.txt') is None:
@@ -29,7 +29,6 @@ def setupVarious(context):
             obj = bika_setup._getOb(obj_id)
             obj.unmarkCreationFlag()
             obj.reindexObject()
-
     # Plone's jQuery gets clobbered when jsregistry is loaded.
     setup = portal.portal_setup
     setup.runImportStepFromProfile(
@@ -38,7 +37,7 @@ def setupVarious(context):
         'profile-plone.app.jquerytools:default', 'jsregistry')
 
 
-def setupPermissions(context):
+def setupWinePermissions(context):
     """ Set up some suggested role to permission mappings.
     New types and anything that differs from bika.lims gets specified here.
     These lines completely overwrite those in bika.lims - Changes common to
@@ -59,7 +58,7 @@ def setupPermissions(context):
     mp(AddStorageCondition, ['Manager', 'LabManager', 'LabClerk'], 0)
 
 
-def setupCatalogs(context):
+def setupWineCatalogs(context):
     if context.readDataFile('bika.wine.txt') is None:
         return
     portal = context.getSite()
@@ -92,7 +91,7 @@ def setupCatalogs(context):
                          ['portal_catalog', 'bika_setup_catalog', ])
 
 
-def setupTestContent(context):
+def setupWineTestContent(context):
     """Setup custom content"""
 
     pass
