@@ -2,6 +2,8 @@ from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
 from archetypes.schemaextender.interfaces import ISchemaModifier
 from bika.wine import bikaMessageFactory as _
 from bika.lims.fields import *
+from bika.lims.browser.widgets.referencewidget import ReferenceWidget \
+    as bikaReferenceWidget
 from bika.lims.interfaces import ISampleType
 from Products.Archetypes.public import *
 from Products.Archetypes.references import HoldingReference
@@ -24,14 +26,13 @@ class SampleTypeSchemaExtender(object):
         ExtReferenceField(
             'WineType',
             required=0,
-            allowed_types=('Wine type'),
+            allowed_types=('WineType'),
             referenceClass = HoldingReference,
             relationship = 'SampleTypeWineType',
             format='select',
-            widget=ReferenceWidget(
+            widget=bikaReferenceWidget(
                 label=_('Wine type'),
-                size=12,
-                render_own_label=True,
+                render_own_label=False,
                 visible={'edit': 'visible',
                          'view': 'visible',
                          'add': 'visible'},
@@ -47,30 +48,11 @@ class SampleTypeSchemaExtender(object):
                 label=_('Varietal'),
             ),
         ),
-        ExtStringField(
+        ExtIntegerField(
             'LabelAlcohol',
             required=False,
-            widget=StringWidget(
+            widget=IntegerWidget(
                 label=_('Label Alcohol'),
-            ),
-        ),
-        ExtReferenceField(
-            'Country',
-            required=0,
-            allowed_types = ('Country',),
-            referenceClass = HoldingReference,
-            relationship = 'SampleTypeCountry',
-            format='select',
-            widget=ReferenceWidget(
-                label=_('Country'),
-                size=12,
-                render_own_label=True,
-                visible={'edit': 'visible',
-                         'view': 'visible',
-                         'add': 'visible'},
-                catalog_name='bika_setup_catalog',
-                base_query={'inactive_state': 'active'},
-                showOn=True,
             ),
         ),
         ExtReferenceField(
@@ -80,22 +62,28 @@ class SampleTypeSchemaExtender(object):
             referenceClass = HoldingReference,
             relationship = 'SampleTypeRegion',
             format='select',
-            widget=ReferenceWidget(
+            widget=bikaReferenceWidget(
                 label=_('Region'),
-                size=12,
-                render_own_label=True,
+                render_own_label=False,
                 visible={'edit': 'visible',
                          'view': 'visible',
                          'add': 'visible'},
                 catalog_name='bika_setup_catalog',
                 base_query={'inactive_state': 'active'},
                 showOn=True,
+                ui_item='Name',
+                colModel=[
+                    {'columnName': 'Name',
+                     'width': '100', 'label': _('Title'), 'align': 'left'},
+                    {'columnName': 'UID', 'hidden': True},
+                ],
             ),
         ),
         ExtReferenceField(
             'TransportConditions',
             required=0,
-            allowed_types = ('TransportConditions',),
+            multiValued=True,
+            allowed_types = ('TransportCondition',),
             referenceClass = HoldingReference,
             relationship = 'SampleTypeTransportConditions',
             widget=MultiSelectionWidget(
@@ -106,7 +94,8 @@ class SampleTypeSchemaExtender(object):
         ExtReferenceField(
             'StorageConditions',
             required=0,
-            allowed_types = ('StorageConditions',),
+            multiValued=True,
+            allowed_types = ('StorageCondition',),
             referenceClass = HoldingReference,
             relationship = 'SampleTypeStorageConditions',
             widget=MultiSelectionWidget(
@@ -144,7 +133,6 @@ class SampleTypeSchemaExtender(object):
             'WineType',
             'Vintage',
             'Varietal',
-            'Country',
             'Region',
             'LabelAlcohol',
             'TransportConditions',

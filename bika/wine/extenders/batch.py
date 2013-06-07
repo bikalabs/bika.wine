@@ -72,7 +72,7 @@ class BatchSchemaExtender(object):
         ),
         ExtIntegerField(
             'LabelAlcohol',
-            required=True,
+            required=False,
             widget=IntegerWidget(
                 label=_('Label Alcohol'),
             ),
