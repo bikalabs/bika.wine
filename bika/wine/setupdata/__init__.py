@@ -32,7 +32,7 @@ class SubGroups:
             logger.info("No SubGroups defined.")
             return
         logger.info("Loading SubGroups...")
-        folder = lsd.context.bika_setup.bika_subgroups
+        folder = context.bika_setup.bika_subgroups
         rows = lsd.get_rows(ws, 3)
         for row in rows:
             if 'title' in row and row['title']:
@@ -62,7 +62,8 @@ class StorageConditions:
             logger.info("No Storage conditions defined.")
             return
         logger.info("Loading Storage conditions...")
-        folder = lsd.context.bika_setup.bika_storageconditions
+        import pdb; pdb.set_trace()
+        folder = self.context.bika_setup.bika_storageconditions
         rows = lsd.get_rows(ws, 3)
         for row in rows:
             if 'title' in row and row['title']:
@@ -91,7 +92,7 @@ class TransportConditions:
             logger.info("No Transport conditions defined.")
             return
         logger.info("Loading Transport conditions...")
-        folder = lsd.context.bika_setup.bika_transportconditions
+        folder = self.context.bika_setup.bika_transportconditions
         rows = lsd.get_rows(ws, 3)
         for row in rows:
             if 'title' in row and row['title']:
@@ -120,7 +121,7 @@ class WineTypes:
             logger.info("No Wine types defined.")
             return
         logger.info("Loading Wine types...")
-        folder = lsd.context.bika_setup.bika_winetypes
+        folder = context.bika_setup.bika_winetypes
         rows = lsd.get_rows(ws, 3)
         for row in rows:
             if 'title' in row and row['title']:
@@ -149,7 +150,7 @@ class Regions:
             logger.info("No Regions defined.")
             return
         logger.info("Loading Regions...")
-        folder = lsd.context.bika_setup.bika_regions
+        folder = context.bika_setup.bika_regions
         rows = lsd.get_rows(ws, 3)
         created = {}
         for row in rows:

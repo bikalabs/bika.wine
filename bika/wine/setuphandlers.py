@@ -20,6 +20,16 @@ def setupVarious(context):
         return
     portal = context.getSite()
 
+    bika_setup = portal._getOb('bika_setup')
+    for obj_id in ('bika_regions',
+                   'bika_winetypes',
+                   'bika_storageconditions',
+                   'bika_transportconditions',
+                   'bika_subgroups',):
+            obj = bika_setup._getOb(obj_id)
+            obj.unmarkCreationFlag()
+            obj.reindexObject()
+
     # Plone's jQuery gets clobbered when jsregistry is loaded.
     setup = portal.portal_setup
     setup.runImportStepFromProfile(
