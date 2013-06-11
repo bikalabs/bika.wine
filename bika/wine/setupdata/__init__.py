@@ -1,9 +1,8 @@
 from bika.lims.exportimport.dataimport import SetupDataSetList as SDL
+from bika.lims.exportimport.setupdata import WorksheetImporter
 from bika.lims.idserver import renameAfterCreation
-from bika.lims.interfaces import ISetupDataImporter
 from bika.lims.interfaces import ISetupDataSetList
 from bika.lims.utils import tmpID
-from bika.wine import logger
 from zope.interface import implements
 
 
@@ -15,26 +14,11 @@ class SetupDataSetList(SDL):
         return SDL.__call__(self, projectname="bika.wine")
 
 
-class SubGroups:
+class Sub_Groups(WorksheetImporter):
 
-    """Import Sub-groups.
-    Columns: title, description, SortKey
-    """
-
-    implements(ISetupDataImporter)
-
-    def __init__(self, context):
-        self.context = context
-
-    def __call__(self, lsd, wb):
-        ws = wb.get_sheet_by_name("Sub Groups")
-        if not ws:
-            logger.info("No SubGroups defined.")
-            return
-        logger.info("Loading SubGroups...")
-        folder = lsd.context.bika_setup.bika_subgroups
-        rows = lsd.get_rows(ws, 3)
-        for row in rows:
+    def Import(self):
+        folder = self.context.bika_setup.bika_subgroups
+        for row in self.get_rows(3):
             if 'title' in row and row['title']:
                 _id = folder.invokeFactory('SubGroup', id=tmpID())
                 obj = folder[_id]
@@ -45,26 +29,11 @@ class SubGroups:
                 renameAfterCreation(obj)
 
 
-class StorageConditions:
+class Storage_Conditions(WorksheetImporter):
 
-    """Import Storage conditions.
-    Columns: title, description
-    """
-
-    implements(ISetupDataImporter)
-
-    def __init__(self, context):
-        self.context = context
-
-    def __call__(self, lsd, wb):
-        ws = wb.get_sheet_by_name("Storage Conditions")
-        if not ws:
-            logger.info("No Storage conditions defined.")
-            return
-        logger.info("Loading Storage conditions...")
-        folder = lsd.context.bika_setup.bika_storageconditions
-        rows = lsd.get_rows(ws, 3)
-        for row in rows:
+    def Import(self):
+        folder = self.context.bika_setup.bika_storageconditions
+        for row in self.get_rows(3):
             if 'title' in row and row['title']:
                 _id = folder.invokeFactory('StorageCondition', id=tmpID())
                 obj = folder[_id]
@@ -74,26 +43,11 @@ class StorageConditions:
                 renameAfterCreation(obj)
 
 
-class TransportConditions:
+class Transport_Conditions(WorksheetImporter):
 
-    """Import Transport conditions.
-    Columns: title, description
-    """
-
-    implements(ISetupDataImporter)
-
-    def __init__(self, context):
-        self.context = context
-
-    def __call__(self, lsd, wb):
-        ws = wb.get_sheet_by_name("Transport Conditions")
-        if not ws:
-            logger.info("No Transport conditions defined.")
-            return
-        logger.info("Loading Transport conditions...")
-        folder = lsd.context.bika_setup.bika_transportconditions
-        rows = lsd.get_rows(ws, 3)
-        for row in rows:
+    def Import(self):
+        folder = self.context.bika_setup.bika_transportconditions
+        for row in self.get_rows(3):
             if 'title' in row and row['title']:
                 _id = folder.invokeFactory('TransportCondition', id=tmpID())
                 obj = folder[_id]
@@ -103,26 +57,11 @@ class TransportConditions:
                 renameAfterCreation(obj)
 
 
-class WineTypes:
+class Wine_Types(WorksheetImporter):
 
-    """Import Wine types.
-    Columns: title, description
-    """
-
-    implements(ISetupDataImporter)
-
-    def __init__(self, context):
-        self.context = context
-
-    def __call__(self, lsd, wb):
-        ws = wb.get_sheet_by_name("Wine Types")
-        if not ws:
-            logger.info("No Wine types defined.")
-            return
-        logger.info("Loading Wine types...")
-        folder = lsd.context.bika_setup.bika_winetypes
-        rows = lsd.get_rows(ws, 3)
-        for row in rows:
+    def Import(self):
+        folder = self.context.bika_setup.bika_winetypes
+        for row in self.get_rows(3):
             if 'title' in row and row['title']:
                 _id = folder.invokeFactory('WineType', id=tmpID())
                 obj = folder[_id]
@@ -132,27 +71,12 @@ class WineTypes:
                 renameAfterCreation(obj)
 
 
-class Regions:
+class Regions(WorksheetImporter):
 
-    """Import Country and Region values.
-    Columns: Country, Region
-    """
-
-    implements(ISetupDataImporter)
-
-    def __init__(self, context):
-        self.context = context
-
-    def __call__(self, lsd, wb):
-        ws = wb.get_sheet_by_name("Regions")
-        if not ws:
-            logger.info("No Regions defined.")
-            return
-        logger.info("Loading Regions...")
-        folder = lsd.context.bika_setup.bika_regions
-        rows = lsd.get_rows(ws, 3)
+    def Import(self):
+        folder = self.context.bika_setup.bika_regions
         created = {}
-        for row in rows:
+        for row in self.get_rows(3):
             country = row.get('Country', None)
             region = row.get('Region', None)
             if country and region:

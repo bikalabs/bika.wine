@@ -9,26 +9,26 @@
       provides="bika.lims.interfaces.ISetupDataSetList"/>
 
     <adapter
-      name="SubGroups"
-      factory="bika.wine.setupdata.SubGroups"
+      name="Sub_Groups"
+      factory="bika.wine.setupdata.Sub_Groups"
       provides="bika.lims.interfaces.ISetupDataImporter"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
 
     <adapter
-      name="StorageConditions"
-      factory="bika.wine.setupdata.StorageConditions"
+      name="Storage_Conditions"
+      factory="bika.wine.setupdata.Storage_Conditions"
       provides="bika.lims.interfaces.ISetupDataImporter"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
 
     <adapter
-      name="TransportConditions"
-      factory="bika.wine.setupdata.TransportConditions"
+      name="Transport_Conditions"
+      factory="bika.wine.setupdata.Transport_Conditions"
       provides="bika.lims.interfaces.ISetupDataImporter"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
 
     <adapter
-      name="WineTypes"
-      factory="bika.wine.setupdata.WineTypes"
+      name="Wine_Types"
+      factory="bika.wine.setupdata.Wine_Types"
       provides="bika.lims.interfaces.ISetupDataImporter"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
 
