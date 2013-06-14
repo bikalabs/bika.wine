@@ -5,7 +5,7 @@
     i18n_domain="bika">
 
     <adapter
-      factory="bika.wine.browser.batch.ClientContactVocabularyFactory"
+      factory="bika.wine.browser.batch.contactvocabulary.BatchContactVocabularyFactory"
       provides="bika.lims.interfaces.IDisplayListVocabulary"
       for="bika.lims.interfaces.IBatch"
       name="getContacts"
