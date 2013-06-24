@@ -4,6 +4,7 @@ from bika.wine import bikaMessageFactory as _
 from bika.lims.fields import *
 from bika.lims.browser.widgets.referencewidget import ReferenceWidget \
     as bikaReferenceWidget
+from bika.lims.browser.widgets import DecimalWidget as bikaDecimalWidget
 from bika.lims.interfaces import ISampleType
 from Products.Archetypes.public import *
 from Products.Archetypes.references import HoldingReference
@@ -48,11 +49,13 @@ class SampleTypeSchemaExtender(object):
                 label=_('Varietal'),
             ),
         ),
-        ExtIntegerField(
+        ExtFloatField(
             'LabelAlcohol',
             required=False,
-            widget=IntegerWidget(
+            validators=('percentvalidator'),
+            widget=bikaDecimalWidget(
                 label=_('Label Alcohol'),
+                unit='%',
             ),
         ),
         ExtReferenceField(

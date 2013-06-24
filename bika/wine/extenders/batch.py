@@ -5,6 +5,8 @@ from bika.lims import bikaMessageFactory as _b
 from bika.lims.browser.analysisrequest import WidgetVisibility as _WV
 from bika.lims.browser.widgets import DateTimeWidget
 from bika.lims.browser.widgets import RecordsWidget as bikaRecordsWidget
+from bika.lims.browser.widgets import DecimalWidget as bikaDecimalWidget
+from bika.lims.browser.widgets import IntegerWidget as bikaIntegerWidget
 from bika.lims.fields import *
 from bika.lims.interfaces import IBatch
 from plone.indexer.decorator import indexer
@@ -70,11 +72,13 @@ class BatchSchemaExtender(object):
                 label=_b('Date'),
             ),
         ),
-        ExtIntegerField(
+        ExtFloatField(
             'LabelAlcohol',
             required=False,
-            widget=IntegerWidget(
+            validators=('percentvalidator'),
+            widget=bikaDecimalWidget(
                 label=_('Label Alcohol'),
+                unit='%',
             ),
         ),
         InheritedObjectsUIField(
