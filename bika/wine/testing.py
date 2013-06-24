@@ -25,7 +25,6 @@ class BikaTestLayer(PloneSandboxLayer):
     def setUpZope(self, app, configurationContext):
         import bika.lims
         import bika.wine
-        import bika.debortoli
         import archetypes.schemaextender
         # Load ZCML
         self.loadZCML(package=Products.ATExtensions)
@@ -93,7 +92,7 @@ class BikaTestLayer(PloneSandboxLayer):
         # load test data
         self.request = makerequest(portal.aq_parent).REQUEST
         self.request.form['setupexisting'] = 1
-        self.request.form['existing'] = "bika.debortoli:test"
+        self.request.form['existing'] = "bika.wine:test"
         lsd = LoadSetupData(portal, self.request)
         lsd()
 
@@ -103,4 +102,4 @@ BIKA_WINE_FIXTURE = BikaTestLayer()
 
 BIKA_WINE_TESTING = FunctionalTesting(
     bases=(BIKA_WINE_FIXTURE, z2.ZSERVER_FIXTURE),
-    name="DebortoliTestingLayer:Robot")
+    name="WineTestingLayer:Robot")
