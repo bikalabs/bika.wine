@@ -77,18 +77,15 @@ def setupWineCatalogs(context):
 
     # modify bika_setup_catalog
     at = getToolByName(portal, 'archetype_tool')
-    at.setCatalogsByType('Country',
-                         ['portal_catalog', 'bika_setup_catalog', ])
-    at.setCatalogsByType('Region',
-                         ['portal_catalog', 'bika_setup_catalog', ])
-    at.setCatalogsByType('SubGroup',
-                         ['portal_catalog', 'bika_setup_catalog', ])
-    at.setCatalogsByType('WineType',
-                         ['portal_catalog', 'bika_setup_catalog', ])
-    at.setCatalogsByType('TransportCondition',
-                         ['portal_catalog', 'bika_setup_catalog', ])
-    at.setCatalogsByType('StorageCondition',
-                         ['portal_catalog', 'bika_setup_catalog', ])
+    at.setCatalogsByType('Country', ['bika_setup_catalog', ])
+    at.setCatalogsByType('Region', ['bika_setup_catalog', ])
+    at.setCatalogsByType('SubGroup', ['bika_setup_catalog', ])
+    at.setCatalogsByType('WineType', ['bika_setup_catalog', ])
+    at.setCatalogsByType('TransportCondition', ['bika_setup_catalog', ])
+    at.setCatalogsByType('StorageCondition', ['bika_setup_catalog', ])
+
+    bc = getToolByName(portal, 'bika_catalog')
+    addIndex(bc, 'getWorksOrderID', 'FieldIndex')
 
 
 def setupWineTestContent(context):
