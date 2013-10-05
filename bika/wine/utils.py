@@ -32,6 +32,9 @@ class Alerts(BrowserView):
         ret = []
         for ar in ars:
             ar = ar.getObject()
+            sample = ar.getSample()
+            if not hasattr(sample, 'future_dated'):
+                continue
             batch_title = ar.getBatch().Title() if ar.getBatch() else ''
             ret.append({
                 'UID': ar.UID(),
