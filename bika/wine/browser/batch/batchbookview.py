@@ -122,9 +122,9 @@ class BatchBookView(BikaListingView):
             arlink = "<a href='%s'>%s</a>" % (
                 ar.absolute_url(), ar.Title())
 
-            subgroup = ar.Schema().getField('SubGroup').get(ar)
-            sub_title = subgroup.Title() if subgroup else 'None'
-            sub_sort = subgroup.getSortKey() if subgroup else '100'
+            subgroup = ar.Schema()['SubGroup'].get(ar)
+            sub_title = subgroup.Title() if subgroup else 'No Subgroup'
+            sub_sort = subgroup.getSortKey() if subgroup else '1'
             sub_class = re.sub(r"[^A-Za-z\w\d\-\_]", '', sub_title)
 
             if [sub_sort, sub_title] not in self.categories:
@@ -154,7 +154,7 @@ class BatchBookView(BikaListingView):
                 'after': {},
                 'choices': {},
                 'class': {},
-                'state_class': 'state-active subgroup_{0}'.format(sub_class),
+                'state_class': 'state-active subgroup_{0}'.format(sub_class) if sub_class else 'state-active',
                 'allow_edit': [],
                 'Batch': '',
                 'Sub-group': '',
