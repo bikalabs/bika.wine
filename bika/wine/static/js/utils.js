@@ -18,8 +18,8 @@ $(document).ready(function(){
         $.getJSON(alerturl,
             {'_authenticator': $('input[name="_authenticator"]').val(),},
             function(alert_data, textStatus){
-                var msgtitle = _b("Attention");
-                var msgtext = _b("The following items are not yet received, and their sampling date has past.");
+                var msgtitle = _b("Sampling Alert");
+                var msgtext = _b("The following future-dated items are not yet received, and their sampling date has past.");
                 var title = _b("Title");
                 var description = _b("Description");
                 if(alert_data.length > 0){
@@ -33,20 +33,27 @@ $(document).ready(function(){
                     dt = dt + "<tr></tr>"
                     for (var i = 0; i < alert_data.length; i++) {
                         dt = dt + "<tr>";
-                        dt = dt + "<td>"+alert_data[i]['Title']+"</td>";
-                        dt = dt + "<td>"+alert_data[i]['Description']+"</td>";
+                        dt = dt + "<td style='padding: 2px 10px 2px 10px;'>"+alert_data[i]['Title']+"</td>";
+                        dt = dt + "<td style='padding: 2px 10px 2px 10px;'>"+alert_data[i]['Description']+"</td>";
                         dt = dt + "</tr>";
                     };
                     dt = dt + "</table>"
                     dt = dt + "</div>";
                     $('body').append(dt);
-                    $('#alert_dialog').dialog();
+                    $('#alert_dialog').dialog({
+                        height: 340,
+                        width:440,
+                        modal: true,
+                        closeOnEscape: true
+                    });
                     $('#alert_beep')[0].play();
+                    window.focus();
                 }
             }
         );
     }
     var alertIntervalID = setInterval(alerts, millis);
+    alerts();
 
 });
 }(jQuery));
