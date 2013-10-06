@@ -24,7 +24,7 @@ class getAnalysisContainers(BrowserView):
 
         ars = self.bika_catalog(
             portal_type='AnalysisRequest',
-            cancelled_state='active',
+            cancellation_state='active',
             sort_on="created",
             sort_order="desc",
             searchableText=searchTerm,
@@ -32,7 +32,7 @@ class getAnalysisContainers(BrowserView):
 
         batches = self.bika_catalog(
             portal_type='Batch',
-            cancelled_state='active',
+            cancellation_state='active',
             sort_on="created",
             sort_order="desc",
             searchableText=searchTerm,
