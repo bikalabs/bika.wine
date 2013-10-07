@@ -7,6 +7,7 @@ from bika.lims.fields import *
 from bika.lims.browser.widgets import ReferenceWidget
 from bika.lims.interfaces import IAnalysisRequest
 from Products.Archetypes.references import HoldingReference
+from Products.CMFCore.utils import getToolByName
 from zope.component import adapts
 from zope.interface import implements
 
@@ -85,7 +86,17 @@ class WidgetVisibility(_WV):
 
     def __call__(self):
         ret = _WV.__call__(self)
-        # if self.context.aq_parent.portal_type == 'Client':
-        #     ret['add']['visible'].remove('Client')
-        #     ret['add']['hidden'].append('Client')
+
+        workflow = getToolByName(self.context, 'portal_workflow')
+        state = workflow.getInfoFor(self.context, 'review_state')
+
+        index_of_batch_field = ret['header_table']['visible'].index('Batch')+1
+        ret['header_table']['visible'].insert(index_of_batch_field, 'SubGroup')
+        if 'Batch' in ret['view']['visible']:
+            index_of_batch_field = ret['view']['visible'].index('Batch')+1
+            ret['view']['visible'].insert(index_of_batch_field, 'SubGroup')
+        elif 'Batch' in ret['edit']['visible']:
+            index_of_batch_field = ret['edit']['visible'].index('Batch')+1
+            ret['edit']['visible'].insert(index_of_batch_field, 'SubGroup')
         return ret
+
