@@ -79,7 +79,7 @@ class BatchFolderContentsView(_BFCV):
             obj = items[x]['obj']
 
             items[x]['replace']['Title'] = \
-                "<a href='%s'>%s</a>" % (items[x]['url'], obj.Title())
+                "<a href='%s/analysisrequests'>%s</a>" % (items[x]['url'], obj.Title())
 
             woid = obj.Schema().getField('WorksOrderID').get(obj)
             items[x]['WorksOrderID'] = woid
