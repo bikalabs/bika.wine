@@ -68,8 +68,11 @@ class BatchBookView(BikaListingView):
     def __call__(self):
         mtool = getToolByName(self.context, 'portal_membership')
         checkPermission = mtool.checkPermission
-        self.allow_edit = checkPermission("Modify portal content",
-                                          self.context)
+        self.allow_edit = checkPermission("Modify portal content", self.context)
+        self.review_states[0]['custom_actions'] = [{'id':'copy_to_new'}]
+        if self.insert_submit_button:
+            self.review_states[0]['custom_actions'] = [{'id':'submit'}]
+
         return super(BatchBookView, self).__call__()
 
     def folderitems(self):
@@ -207,23 +210,3 @@ class BatchBookView(BikaListingView):
 
         return items
 
-    def get_workflow_actions(self):
-        actions = super(BatchBookView, self).get_workflow_actions()
-        title = self.translate(_p('copy_to_new_transition_title'))
-        actions.insert(0,
-                       {'id': 'copy_to_new',
-                        'name': 'CopyToNew',
-                        'description': '',
-                        'title': title,
-                        'title_or_id': title,
-                        'url': 'workflow_action?workflow_action=copy_to_new'})
-        if self.insert_submit_button:
-            title = self.translate(_p('submit_transition_title'))
-            actions.insert(0,
-                           {'id': 'submit',
-                            'name': 'Submit',
-                            'description': '',
-                            'title': title,
-                            'title_or_id': title,
-                            'url': 'workflow_action?workflow_action=submit'})
-        return actions
