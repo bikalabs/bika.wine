@@ -27,9 +27,6 @@ class getARInfo(BrowserView):
             return {}
         ar = ar[0].getObject()
 
-        batch = ar.getBatch()
-        client = ar.getClient()
-        sampletype = ar.getSampleType()
         categories = []
         services = {}
 
@@ -43,14 +40,42 @@ class getARInfo(BrowserView):
                 services[cat_uid] = []
             services[cat_uid].append(service.UID())
 
+        batch = ar.getBatch()
+        client = ar.getClient()
+        contact = ar.getContact()
+        # cccontacts = ar.getCCContact()
+        ccemails = ar.getCCEmails()
+        sampletype = ar.getSampleType()
+        samplepoint = ar.getSamplePoint()
+        subgroup = ar.Schema()['SubGroup'].get(ar)
+        template = ar.getTemplate()
+        profile = ar.getProfile()
+
         ret = {
             'column': column,  # js callback needs to know where the data goes
             'Batch': batch.Title() if batch else '',
             'Batch_uid': batch.UID() if batch else '',
             'Client': client.Title() if client else '',
             'Client_uid': client.UID() if client else '',
+            'Contact': contact.getFullname() if contact else '',
+            'Contact_uid': contact.UID() if contact else '',
+            # 'CCContact': ", ".join([cc.getFullname() for cc in cccontact]) if cccontact else '',
+            # 'CCContact_uid': ", ".join([cc.UID() for cc in cccontact]) if cccontact else '',
+            'CCEmails': ccemails,
             'SampleType': sampletype.Title() if sampletype else '',
             'SampleType_uid': sampletype.UID() if sampletype else '',
+            'SamplePoint': samplepoint.Title() if samplepoint else '',
+            'SamplePoint_uid': samplepoint.UID() if samplepoint else '',
+            'SubGroup': subgroup.Title() if subgroup else '',
+            'SubGroup_uid': subgroup.UID() if subgroup else '',
+            'Template': template.Title() if template else '',
+            'Template_uid': template.UID() if template else '',
+            'Profile': profile.Title() if profile else '',
+            'Profile_uid': profile.UID() if profile else '',
+            'ClientOrderNumber': ar.getClientOrderNumber(),
+            'ClientReference': ar.getSample().getClientReference(),
+            'ClientSampleID': ar.getSample().getClientSampleID(),
+
             'categories': categories,
             'services': services,
         }

@@ -18,10 +18,27 @@ $(document).ready(function(){
 				 '_authenticator': $('input[name="_authenticator"]').val(),},
 				function(ar_data, textStatus){
 					column = ar_data['column'];
+					$("#ar_"+column+"_Contact").val(ar_data['Contact']);
+					$("#ar_"+column+"_Contact_uid").val(ar_data['Contact_uid']);
+					// $("#ar_"+column+"_CCContact").val(ar_data['CCContact']);
+					// $("#ar_"+column+"_CCContact_uid").val(ar_data['CCContact_uid']);
+					$("#ar_"+column+"_CCEmails").val(ar_data['CCEmails']);
 					$("#ar_"+column+"_Client").val(ar_data['Client']);
 					$("#ar_"+column+"_Client_uid").val(ar_data['Client_uid']);
+					$("#ar_"+column+"_SubGroup").val(ar_data['SubGroup']);
+					$("#ar_"+column+"_SubGroup_uid").val(ar_data['SubGroup_uid']);
+					$("#ar_"+column+"_Template").val(ar_data['Template']);
+					$("#ar_"+column+"_Template_uid").val(ar_data['Template_uid']);
+					$("#ar_"+column+"_Profile").val(ar_data['Profile']);
+					$("#ar_"+column+"_Profile_uid").val(ar_data['Profile_uid']);
 					$("#ar_"+column+"_SampleType").val(ar_data['SampleType']);
 					$("#ar_"+column+"_SampleType_uid").val(ar_data['SampleType_uid']);
+					$("#ar_"+column+"_SamplePoint").val(ar_data['SamplePoint']);
+					$("#ar_"+column+"_SamplePoint_uid").val(ar_data['SamplePoint_uid']);
+					$("#ar_"+column+"_ClientOrderNumber").val(ar_data['ClientOrderNumber']);
+					$("#ar_"+column+"_ClientReference").val(ar_data['ClientReference']);
+					$("#ar_"+column+"_ClientSampleID").val(ar_data['ClientSampleID']);
+
 					for (var i = ar_data['categories'].length - 1; i >= 0; i--) {
 						var cat_uid = ar_data['categories'][i];
 						var services = ar_data['services'][cat_uid];
