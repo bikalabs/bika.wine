@@ -92,9 +92,15 @@ class BikaTestLayer(PloneSandboxLayer):
         # load test data
         self.request = makerequest(portal.aq_parent).REQUEST
         self.request.form['setupexisting'] = 1
-        self.request.form['existing'] = "bika.wine:test"
+        self.request.form['existing'] = "bika.lims:test"
         lsd = LoadSetupData(portal, self.request)
         lsd()
+
+        # self.request = makerequest(portal.aq_parent).REQUEST
+        # self.request.form['setupexisting'] = 1
+        # self.request.form['existing'] = "bika.wine:test"
+        # lsd = LoadSetupData(portal, self.request)
+        # lsd()
 
         logout()
 
