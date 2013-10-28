@@ -69,8 +69,6 @@ class BatchBookView(BikaListingView):
         mtool = getToolByName(self.context, 'portal_membership')
         checkPermission = mtool.checkPermission
         self.allow_edit = checkPermission("Modify portal content", self.context)
-        if self.insert_submit_button:
-            self.review_states[0]['custom_actions'] = [{'id': 'submit'}]
 
         return super(BatchBookView, self).__call__()
 
@@ -96,8 +94,9 @@ class BatchBookView(BikaListingView):
             if ar not in ars:
                 ars.append(ar)
 
+        self.review_states[0]['custom_actions'] = []
         if ars:
-            self.review_states[0]['custom_actions'] = [{'id': 'copy_to_new'}]
+            self.review_states[0]['custom_actions'].append({'id': 'copy_to_new'})
 
         self.categories = []
         keywords = []
@@ -206,6 +205,8 @@ class BatchBookView(BikaListingView):
 
                 if kw['keyword'] not in items[i]['class']:
                     items[i]['class'][kw['keyword']] = 'empty'
+        if self.insert_submit_button:
+            self.review_states[0]['custom_actions'].append({'id': 'submit'})
 
         self.categories.sort()
         self.categories = [x[1] for x in self.categories]
