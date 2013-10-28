@@ -25,12 +25,21 @@ class InheritedObjectsUIField(ExtensionField, RecordsField):
     InheritedObjectsUI is a RecordsField because we want the RecordsWidget,
     but the values are stored in ReferenceField 'InheritedObjects'
     """
-
     def get(self, instance, **kwargs):
-        return RecordsField.get(self, instance, **kwargs)
+        # Return the formatted contents of InheritedObjects field.
+        field = instance.Schema()['InheritedObjects']
+        value = field.get(instance)
+        return [{'Title':x.title,
+                 'ObjectID':x.id,
+                 'Description':x.description} for x in value]
 
     def getRaw(self, instance, **kwargs):
-        return RecordsField.getRaw(self, instance, **kwargs)
+        # Return the formatted contents of InheritedObjects field.
+        field = instance.Schema()['InheritedObjects']
+        value = field.get(instance)
+        return [{'Title':x.title,
+                 'ObjectID':x.id,
+                 'Description':x.description} for x in value]
 
     def set(self, instance, value, **kwargs):
         _field = instance.Schema().getField('InheritedObjects')
