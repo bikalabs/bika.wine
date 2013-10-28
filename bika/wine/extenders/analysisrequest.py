@@ -25,7 +25,7 @@ class AnalysisRequestSchemaExtender(object):
             relationship = 'AnalysisRequestSubGroup',
             widget=ReferenceWidget(
                 label=_('Sub-group'),
-                size=12,
+                size=20,
                 render_own_label=True,
                 visible={'edit': 'visible',
                          'view': 'visible',
