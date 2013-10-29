@@ -29,17 +29,17 @@ class InheritedObjectsUIField(ExtensionField, RecordsField):
         # Return the formatted contents of InheritedObjects field.
         field = instance.Schema()['InheritedObjects']
         value = field.get(instance)
-        return [{'Title':x.title,
+        return [{'Title':x.Title(),
                  'ObjectID':x.id,
-                 'Description':x.description} for x in value]
+                 'Description':x.Description()} for x in value]
 
     def getRaw(self, instance, **kwargs):
         # Return the formatted contents of InheritedObjects field.
         field = instance.Schema()['InheritedObjects']
         value = field.get(instance)
-        return [{'Title':x.title,
+        return [{'Title':x.Title(),
                  'ObjectID':x.id,
-                 'Description':x.description} for x in value]
+                 'Description':x.Description()} for x in value]
 
     def set(self, instance, value, **kwargs):
         _field = instance.Schema().getField('InheritedObjects')
@@ -107,6 +107,7 @@ class BatchSchemaExtender(object):
                 label=_("Inherit From"),
                 description=_(
                     "Include all analysis requests belonging to the selected objects."),
+                innerJoin="<br/>",
                 combogrid_options={
                     'Title': {
                         'colModel': [
@@ -189,11 +190,11 @@ class BatchSchemaModifier(object):
         return schema
 
 
-class WidgetVisibility(_WV):
+# class WidgetVisibility(_WV):
 
-    def __call__(self):
-        ret = _WV.__call__(self)
-        if self.context.aq_parent.portal_type == 'Client':
-            ret['add']['visible'].remove('Client')
-            ret['add']['hidden'].append('Client')
-        return ret
+#     def __call__(self):
+#         ret = _WV.__call__(self)
+#         if self.context.aq_parent.portal_type == 'Client':
+#             ret['add']['visible'].remove('Client')
+#             ret['add']['hidden'].append('Client')
+#         return ret

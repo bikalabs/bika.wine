@@ -22,29 +22,35 @@ class getAnalysisContainers(BrowserView):
 
         rows = []
 
-        ars = self.bika_catalog(
-            portal_type='AnalysisRequest',
-            cancellation_state='active',
-            sort_on="created",
-            sort_order="desc",
-            searchableText=searchTerm,
-            limit=50)
+        ars = []
+        for x in [a.getObject() for a in
+                  self.bika_catalog(
+                    portal_type='AnalysisRequest',
+                    cancellation_state='active',
+                    sort_on="created",
+                    sort_order="desc")]:
+            if searchTerm in x.Title().lower():
+                ars.append(x)
 
-        batches = self.bika_catalog(
-            portal_type='Batch',
-            cancellation_state='active',
-            sort_on="created",
-            sort_order="desc",
-            searchableText=searchTerm,
-            limit=50)
+        batches = []
+        for x in [a.getObject() for a in
+                  self.bika_catalog(
+                    portal_type='Batch',
+                    cancellation_state='active',
+                    sort_on="created",
+                    sort_order="desc")]:
+            if searchTerm in x.Title().lower() \
+            or searchTerm in x.Schema()['WorksOrderID'].get(x).lower() \
+            or searchTerm in x.Schema()['BlendNumber'].get(x).lower():
+                batches.append(x)
 
         _rows = []
         for item in batches:
             _rows.append({
-                'Title': item.Title,
+                'Title': item.Title(),
                 'ObjectID': item.id,
-                'Description': item.Description,
-                'UID': item.UID
+                'Description': item.Description(),
+                'UID': item.UID()
             })
             _rows = sorted(_rows, cmp=lambda x, y: cmp(x.lower(), y.lower()),
                            key=itemgetter(sidx and sidx or 'Title'))
@@ -54,10 +60,10 @@ class getAnalysisContainers(BrowserView):
         _rows = []
         for item in ars:
             _rows.append({
-                'Title': item.Title,
+                'Title': item.Title(),
                 'ObjectID': item.id,
-                'Description': item.Description,
-                'UID': item.UID
+                'Description': item.Description(),
+                'UID': item.UID()
             })
             _rows = sorted(_rows, cmp=lambda x, y: cmp(x.lower(), y.lower()),
                            key=itemgetter(sidx and sidx or 'Title'))
