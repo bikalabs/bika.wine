@@ -104,8 +104,8 @@ class BikaTestLayer(PloneSandboxLayer):
 
         logout()
 
-BIKA_WINE_FIXTURE = BikaTestLayer()
+BIKAWINE_FIXTURE = BikaTestLayer()
 
-BIKA_WINE_TESTING = FunctionalTesting(
-    bases=(BIKA_WINE_FIXTURE, z2.ZSERVER_FIXTURE),
+BIKAWINE_ROBOT_TESTING = FunctionalTesting(
+    bases=(BIKAWINE_FIXTURE, z2.ZSERVER_FIXTURE),
     name="WineTestingLayer:Robot")

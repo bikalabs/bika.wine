@@ -9,7 +9,7 @@ from zope.interface import implements
 schema = BikaSchema.copy() + Schema((
     ComputedField(
         'Name',
-        expression="context.Title() + ' - ' + context.aq_parent.Title()",
+        expression="context.aq_parent.Title() + ' - ' + context.Title()",
         widget=ComputedWidget(
             visible=False
         ),

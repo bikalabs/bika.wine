@@ -23,12 +23,9 @@ Select from dropdown
     [Arguments]        ${locator}
     ...                ${search_text}=
     ...                ${item_number}=1
-    Click element      ${locator}
-    Wait until page contains element       xpath=//div[contains(@class,'cg-colItem')]
     Input text         ${locator}  ${search_text}
-    sleep              0.5
+    sleep    1
     Click Element      xpath=//div[contains(@class,'cg-colItem')][${item_number}]
-    sleep              0.5
 
 
 SelectDate
