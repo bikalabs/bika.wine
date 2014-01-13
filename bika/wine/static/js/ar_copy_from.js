@@ -30,8 +30,9 @@ function fill_column(data) {
 		var services = {};
 		var specs = {};
 		var cat_uid, service_uid;
+		var i;
 
-		for (var i = obj.Analyses.length - 1; i >= 0; i--) {
+		for (i = obj.Analyses.length - 1; i >= 0; i--) {
 			var analysis = obj.Analyses[i];
 			cat_uid = analysis.CategoryUID;
 			service_uid = analysis.ServiceUID;
@@ -45,10 +46,10 @@ function fill_column(data) {
 		for(cat_uid in services){
 			if(!services.hasOwnProperty(cat_uid)){ continue; }
 			var service_uids = services[cat_uid];
-			window.toggleCat("lab", cat_uid, col, [], true);
-			for (cat_uid = 0; cat_uid < service_uids.length; cat_uid++) {
-				service_uid = service_uids[cat_uid];
-				$("[column="+col+"]").filter("#"+service_uid).click();
+			window.toggleCat("lab", cat_uid, col, service_uids, true);
+			for (i = 0; i < service_uids.length; i++) {
+				service_uid = service_uids[i];
+				// $("[column="+col+"]").filter("#"+service_uid).click(); // toggleCat does this.
 				var spec = specs[service_uid];
 				if(spec){
 					$("[name^='ar."+col+".min']").filter("[uid='"+service_uid+"']").val(spec.min);
