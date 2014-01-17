@@ -64,8 +64,8 @@ Test SampleType fields
     Click link                          Wine
     ### Set values
     select from dropdown                WineType                Red        1
-    Input text                          Vintage                 a_vintage
-    Input text                          Varietal                a_varietal
+    Input text                          Vintage                 2002
+    select from dropdown                Cultivar                Cabernet Savignon        1
     select from dropdown                Region                  North      1
     Input Text                          LabelAlcohol            15%
     Select from dropdown                TransportConditions     between
@@ -79,8 +79,8 @@ Test SampleType fields
     ${value} =                          Get Value               WineType
     Should be equal                     ${value}                Red Wine
     ${value} =                          Get Value               Vintage
-    Should be equal                     ${value}                a_vintage
-    ${value} =                          Get Value               Varietal
+    Should be equal                     ${value}                2002
+    ${value} =                          Get Value               Cabernet Savignon
     Should be equal                     ${value}                a_varietal
     ${value} =                          Get Value               Region
     Should be equal                     ${value}                North             # buglet: shows only 'Title', tho ui_item=Name.

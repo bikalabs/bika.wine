@@ -9,6 +9,7 @@
             <element value="Country"/>
             <element value="Region"/>
             <element value="Regions"/>
+            <element value="Cultivar"/>
             <element value="TransportCondition"/>
             <element value="StorageCondition"/>
             <element value="WineType"/>

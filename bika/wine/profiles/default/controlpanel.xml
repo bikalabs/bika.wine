@@ -22,6 +22,15 @@
   <permission>BIKA: Manage Bika</permission>
  </configlet>
 
+ <configlet title="Cultivars" action_id="bika_cultivars"
+    appId="bika.wine" category="bika" condition_expr=""
+    icon_expr="string:++resource++bika.wine.images/cultivar.png"
+    url_expr="string:$portal_url/bika_setup/bika_cultivars"
+    visible="True"
+    i18n:attributes="title">
+  <permission>BIKA: Manage Bika</permission>
+ </configlet>
+
  <configlet title="Wine types" action_id="bika_winetypes"
     appId="bika.wine" category="bika" condition_expr=""
     icon_expr="string:++resource++bika.wine.images/winetype.png"

@@ -5,6 +5,14 @@
     i18n_domain="bika.wine">
 
     <browser:page
+      for="bika.wine.interfaces.ICultivars"
+      name="folder_view"
+      class=".bika_cultivars.CultivarsView"
+      permission="bika.lims.ManageBika"
+      layer="bika.lims.interfaces.IBikaLIMS"
+    />
+
+    <browser:page
       for="bika.wine.interfaces.IRegions"
       name="folder_view"
       class=".bika_regions.RegionsView"

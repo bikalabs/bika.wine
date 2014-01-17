@@ -26,6 +26,12 @@
       <bound-workflow workflow_id="bika_inactive_workflow"/>
     </type>
 
+    <type type_id="Cultivars"/>
+    <type type_id="Cultivar">
+      <bound-workflow workflow_id="bika_one_state_workflow"/>
+      <bound-workflow workflow_id="bika_inactive_workflow"/>
+    </type>
+
     <type type_id="TransportConditions"/>
     <type type_id="TransportCondition">
       <bound-workflow workflow_id="bika_one_state_workflow"/>

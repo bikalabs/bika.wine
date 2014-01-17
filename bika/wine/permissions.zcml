@@ -14,6 +14,7 @@
 
 <permission id="bika.wine.permissions.AddCountry" title="BIKA: Add Country"/>
 <permission id="bika.wine.permissions.AddRegion" title="BIKA: Add Region"/>
+<permission id="bika.wine.permissions.AddCultivar" title="BIKA: Add Cultivar"/>
 <permission id="bika.wine.permissions.AddSubGroup" title="BIKA: Add Sub-group"/>
 <permission id="bika.wine.permissions.AddWineType" title="BIKA: Add Wine type"/>
 <permission id="bika.wine.permissions.AddTransportCondition" title="BIKA: Add Transport condition"/>

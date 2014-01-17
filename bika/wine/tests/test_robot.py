@@ -1,4 +1,4 @@
-from bika.wine.testing import BIKA_WINE_TESTING
+from bika.wine.testing import BIKAWINE_ROBOT_TESTING
 from plone.testing import layered
 from pkg_resources import resource_listdir
 import robotsuite
@@ -13,6 +13,6 @@ def test_suite():
     suite = unittest.TestSuite()
     for robot in robots:
         suite.addTests([
-            layered(robotsuite.RobotTestSuite(robot), layer=BIKA_WINE_TESTING),
+            layered(robotsuite.RobotTestSuite(robot), layer=BIKAWINE_ROBOT_TESTING),
         ])
     return suite

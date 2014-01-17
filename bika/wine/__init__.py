@@ -32,6 +32,8 @@ def initialize(context):
 
     from content.country import Country
     from content.region import Region
+    from controlpanel.bika_cultivars import Cultivars
+    from content.cultivar import Cultivar
     from controlpanel.bika_regions import Regions
     from controlpanel.bika_subgroups import SubGroups
     from content.subgroup import SubGroup

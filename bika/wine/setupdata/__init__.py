@@ -70,6 +70,19 @@ class Wine_Types(WorksheetImporter):
                 obj.unmarkCreationFlag()
                 renameAfterCreation(obj)
 
+class Cultivars(WorksheetImporter):
+
+    def Import(self):
+        folder = self.context.bika_setup.bika_cultivars
+        for row in self.get_rows(3):
+            if 'title' in row and row['title']:
+                _id = folder.invokeFactory('Cultivar', id=tmpID())
+                obj = folder[_id]
+                obj.edit(title=row['title'],
+                         description=row['description'])
+                obj.unmarkCreationFlag()
+                renameAfterCreation(obj)
+
 
 class Regions(WorksheetImporter):
 

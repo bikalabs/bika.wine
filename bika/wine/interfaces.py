@@ -13,6 +13,14 @@ class IRegion(Interface):
     """Region, used for wine-region selection"""
 
 
+class ICultivars(Interface):
+    """Cultivars configuration folder"""
+
+
+class ICultivar(Interface):
+    """Cultivar"""
+
+
 class ISubGroups(Interface):
     """Sub-groups configuration folder"""
 

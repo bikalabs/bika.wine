@@ -2,6 +2,7 @@
 
 from bika.wine.permissions import AddCountry
 from bika.wine.permissions import AddRegion
+from bika.wine.permissions import AddCultivar
 from bika.wine.permissions import AddStorageCondition
 from bika.wine.permissions import AddSubGroup
 from bika.wine.permissions import AddTransportCondition
@@ -23,6 +24,7 @@ def setupWineVarious(context):
     bika_setup = portal._getOb('bika_setup')
     for obj_id in ('bika_regions',
                    'bika_winetypes',
+                   'bika_cultivars',
                    'bika_storageconditions',
                    'bika_transportconditions',
                    'bika_subgroups',):
@@ -52,6 +54,7 @@ def setupWinePermissions(context):
     mp = portal.manage_permission
     mp(AddCountry, ['Manager', 'LabManager', 'LabClerk'], 0)
     mp(AddRegion, ['Manager', 'LabManager', 'LabClerk'], 0)
+    mp(AddCultivar, ['Manager', 'LabManager', 'LabClerk'], 0)
     mp(AddSubGroup, ['Manager', 'LabManager', 'LabClerk'], 0)
     mp(AddWineType, ['Manager', 'LabManager', 'LabClerk'], 0)
     mp(AddTransportCondition, ['Manager', 'LabManager', 'LabClerk'], 0)
@@ -79,6 +82,7 @@ def setupWineCatalogs(context):
     at = getToolByName(portal, 'archetype_tool')
     at.setCatalogsByType('Country', ['bika_setup_catalog', ])
     at.setCatalogsByType('Region', ['bika_setup_catalog', ])
+    at.setCatalogsByType('Cultivar', ['bika_setup_catalog', ])
     at.setCatalogsByType('SubGroup', ['bika_setup_catalog', ])
     at.setCatalogsByType('WineType', ['bika_setup_catalog', ])
     at.setCatalogsByType('TransportCondition', ['bika_setup_catalog', ])

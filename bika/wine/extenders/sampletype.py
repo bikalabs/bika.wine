@@ -42,11 +42,22 @@ class SampleTypeSchemaExtender(object):
                 showOn=True,
             ),
         ),
-        ExtStringField(
-            'Varietal',
-            required=False,
-            widget=StringWidget(
-                label=_('Varietal'),
+        ExtReferenceField(
+            'Cultivar',
+            required=0,
+            allowed_types=('Cultivar'),
+            referenceClass = HoldingReference,
+            relationship = 'SampleTypeCultivar',
+            format='select',
+            widget=bikaReferenceWidget(
+                label=_('Cultivar'),
+                render_own_label=False,
+                visible={'edit': 'visible',
+                         'view': 'visible',
+                         'add': 'visible'},
+                catalog_name='bika_setup_catalog',
+                base_query={'inactive_state': 'active'},
+                showOn=True,
             ),
         ),
         ExtFloatField(
@@ -135,7 +146,7 @@ class SampleTypeSchemaExtender(object):
         schematas['wine'] = [
             'WineType',
             'Vintage',
-            'Varietal',
+            'Cultivar',
             'Region',
             'LabelAlcohol',
             'TransportConditions',
