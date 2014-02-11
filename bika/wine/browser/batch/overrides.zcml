@@ -19,4 +19,12 @@
       layer="bika.lims.interfaces.IBikaLIMS"
     />
 
+    <browser:page
+      for="bika.lims.interfaces.IBatch"
+      name="analysisrequests"
+      class="bika.wine.browser.batch.analysisrequests.AnalysisRequestsView"
+      permission="zope2.View"
+      layer="bika.lims.interfaces.IBikaLIMS"
+    />
+
 </configure>
