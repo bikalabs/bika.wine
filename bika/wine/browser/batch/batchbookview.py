@@ -157,7 +157,7 @@ class BatchBookView(BikaListingView):
                 'before': {},
                 'after': {},
                 'choices': {},
-                'class': {},
+                'class': {'Batch': 'Title'},
                 'state_class': 'state-active subgroup_{0}'.format(sub_class) if sub_class else 'state-active',
                 'allow_edit': [],
                 'Batch': '',
@@ -173,8 +173,8 @@ class BatchBookView(BikaListingView):
         # Insert columns for analyses
         for kw in keywords:
             self.columns[kw['keyword']] = {
-                'title': kw['title'],
-                'sortable': False
+                'title': kw['keyword'], # kw['title'],
+                'sortable': True
             }
             self.review_states[0]['columns'].insert(
                 len(self.review_states[0]['columns']) - 1, kw['keyword'])
