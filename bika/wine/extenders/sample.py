@@ -27,14 +27,21 @@ class SampleSchemaExtender(object):
         self.context = context
 
     def getBestBeforeDate(self):
+        bb = ''
+        sampletype = self.getSampleType()
         DateSampled = self.getDateSampled()
-        if DateSampled:
+        months = sampletype.Schema().getField('ShelfLife').get(sampletype)
+        if DateSampled and months:
             datesampled = DT2dt(DateSampled)
-            datesampled = datesampled + timedelta(months=2)
-            DateSampled = dt2DT(datesampled)
+            try:
+                months = int(months)
+                bb = datesampled + timedelta(months=months)
+                bb = dt2DT(bb)
+            except ValueError:
+                bb = ''
         else:
-            DateSampled = None
-        return DateSampled
+            bb = ''
+        return bb
 
     def getOrder(self, schematas):
 
