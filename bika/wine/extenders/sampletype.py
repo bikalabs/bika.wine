@@ -96,26 +96,38 @@ class SampleTypeSchemaExtender(object):
         ExtReferenceField(
             'TransportConditions',
             required=0,
-            multiValued=True,
-            allowed_types = ('TransportCondition',),
+            allowed_types=('TransportCondition'),
             referenceClass = HoldingReference,
-            relationship = 'SampleTypeTransportConditions',
-            widget=MultiSelectionWidget(
-                label=_("Transport conditions"),
-                format="checkbox",
-            )
+            relationship = 'SampleTypeTransportCondition',
+            format='select',
+            widget=bikaReferenceWidget(
+                label=_('TransportCondition'),
+                render_own_label=False,
+                visible={'edit': 'visible',
+                         'view': 'visible',
+                         'add': 'visible'},
+                catalog_name='bika_setup_catalog',
+                base_query={'inactive_state': 'active'},
+                showOn=True,
+            ),
         ),
         ExtReferenceField(
             'StorageConditions',
             required=0,
-            multiValued=True,
-            allowed_types = ('StorageCondition',),
+            allowed_types=('StorageCondition'),
             referenceClass = HoldingReference,
-            relationship = 'SampleTypeStorageConditions',
-            widget=MultiSelectionWidget(
-                label=_("Storage conditions"),
-                format="checkbox",
-            )
+            relationship = 'SampleTypeStorageCondition',
+            format='select',
+            widget=bikaReferenceWidget(
+                label=_('StorageCondition'),
+                render_own_label=False,
+                visible={'edit': 'visible',
+                         'view': 'visible',
+                         'add': 'visible'},
+                catalog_name='bika_setup_catalog',
+                base_query={'inactive_state': 'active'},
+                showOn=True,
+            ),
         ),
         ExtStringField(
             'ShelfLifeType',
