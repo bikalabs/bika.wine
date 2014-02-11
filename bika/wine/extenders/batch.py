@@ -2,14 +2,11 @@ from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
 from archetypes.schemaextender.interfaces import ISchemaModifier
 from bika.wine import bikaMessageFactory as _
 from bika.lims import bikaMessageFactory as _b
-from bika.lims.browser.analysisrequest import WidgetVisibility as _WV
 from bika.lims.browser.widgets import DateTimeWidget
 from bika.lims.browser.widgets import RecordsWidget as bikaRecordsWidget
 from bika.lims.browser.widgets import DecimalWidget as bikaDecimalWidget
-from bika.lims.browser.widgets import IntegerWidget as bikaIntegerWidget
 from bika.lims.fields import *
 from bika.lims.interfaces import IBatch
-from plone.indexer.decorator import indexer
 from Products.Archetypes.public import *
 from Products.Archetypes.references import HoldingReference
 from Products.ATExtensions.ateapi import RecordsField
@@ -17,6 +14,7 @@ from Products.CMFPlone.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from zope.component import adapts
 from zope.interface import implements
+from plone.indexer import indexer
 
 
 class InheritedObjectsUIField(ExtensionField, RecordsField):
@@ -25,21 +23,22 @@ class InheritedObjectsUIField(ExtensionField, RecordsField):
     InheritedObjectsUI is a RecordsField because we want the RecordsWidget,
     but the values are stored in ReferenceField 'InheritedObjects'
     """
+
     def get(self, instance, **kwargs):
         # Return the formatted contents of InheritedObjects field.
         field = instance.Schema()['InheritedObjects']
         value = field.get(instance)
-        return [{'Title':x.Title(),
-                 'ObjectID':x.id,
-                 'Description':x.Description()} for x in value]
+        return [{'Title': x.Title(),
+                 'ObjectID': x.id,
+                 'Description': x.Description()} for x in value]
 
     def getRaw(self, instance, **kwargs):
         # Return the formatted contents of InheritedObjects field.
         field = instance.Schema()['InheritedObjects']
         value = field.get(instance)
-        return [{'Title':x.Title(),
-                 'ObjectID':x.id,
-                 'Description':x.Description()} for x in value]
+        return [{'Title': x.Title(),
+                 'ObjectID': x.id,
+                 'Description': x.Description()} for x in value]
 
     def set(self, instance, value, **kwargs):
         _field = instance.Schema().getField('InheritedObjects')
@@ -188,6 +187,12 @@ class BatchSchemaModifier(object):
         schema['title'].required = True
         schema['title'].widget.visible = True
         return schema
+
+
+@indexer(IBatch)
+def BatchDate(instance):
+    return instance.Schema().getField('BatchDate').get(instance)
+
 
 
 # class WidgetVisibility(_WV):
