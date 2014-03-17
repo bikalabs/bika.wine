@@ -21,14 +21,6 @@ class ICultivar(Interface):
     """Cultivar"""
 
 
-class ISubGroups(Interface):
-    """Sub-groups configuration folder"""
-
-
-class ISubGroup(Interface):
-    """Sub-Group"""
-
-
 class IWineTypes(Interface):
     """Wine types configuration folder"""
 

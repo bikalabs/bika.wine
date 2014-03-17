@@ -35,8 +35,6 @@ def initialize(context):
     from controlpanel.bika_cultivars import Cultivars
     from content.cultivar import Cultivar
     from controlpanel.bika_regions import Regions
-    from controlpanel.bika_subgroups import SubGroups
-    from content.subgroup import SubGroup
     from controlpanel.bika_winetypes import WineTypes
     from content.winetype import WineType
     from controlpanel.bika_transportconditions import TransportConditions

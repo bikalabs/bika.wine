@@ -13,15 +13,6 @@
   <permission>BIKA: Manage Bika</permission>
  </configlet>
 
- <configlet title="Sub-groups" action_id="bika_subgroups"
-    appId="bika.wine" category="bika" condition_expr=""
-    icon_expr="string:++resource++bika.lims.images/batch.png"
-    url_expr="string:$portal_url/bika_setup/bika_subgroups"
-    visible="True"
-    i18n:attributes="title">
-  <permission>BIKA: Manage Bika</permission>
- </configlet>
-
  <configlet title="Cultivars" action_id="bika_cultivars"
     appId="bika.wine" category="bika" condition_expr=""
     icon_expr="string:++resource++bika.wine.images/cultivar.png"

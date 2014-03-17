@@ -8,9 +8,6 @@
  <object name="Country" meta_type="Factory-based Type Information with dynamic views"/>
  <object name="Region" meta_type="Factory-based Type Information with dynamic views"/>
 
- <object name="SubGroups" meta_type="Factory-based Type Information with dynamic views"/>
- <object name="SubGroup" meta_type="Factory-based Type Information with dynamic views"/>
-
  <object name="Cultivars" meta_type="Factory-based Type Information with dynamic views"/>
  <object name="Cultivar" meta_type="Factory-based Type Information with dynamic views"/>
 

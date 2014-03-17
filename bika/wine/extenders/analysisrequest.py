@@ -17,34 +17,6 @@ class AnalysisRequestSchemaExtender(object):
     implements(IOrderableSchemaExtender)
 
     fields = [
-        ExtReferenceField(
-            'SubGroup',
-            required=False,
-            allowed_types=('SubGroup',),
-            referenceClass = HoldingReference,
-            relationship = 'AnalysisRequestSubGroup',
-            widget=ReferenceWidget(
-                label=_('Sub-group'),
-                size=20,
-                render_own_label=True,
-                visible={'edit': 'visible',
-                         'view': 'visible',
-                         'add': 'visible'},
-                catalog_name='bika_setup_catalog',
-                colModel=[
-                    {'columnName': 'Title', 'width': '30',
-                     'label': _b('Title'), 'align': 'left'},
-                    {'columnName': 'Description', 'width': '70',
-                     'label': _b('Description'), 'align': 'left'},
-                    {'columnName': 'SortKey', 'hidden': True},
-                    {'columnName': 'UID', 'hidden': True},
-                ],
-                base_query={'inactive_state': 'active'},
-                sidx='SortKey',
-                sord='asc',
-                showOn=True,
-            ),
-        ),
     ]
 
     def __init__(self, context):
@@ -52,10 +24,6 @@ class AnalysisRequestSchemaExtender(object):
 
     def getOrder(self, schematas):
         default = schematas['default']
-        # Insert SubGroup field after Batch
-        if 'SubGroup' in default:
-            default.remove('SubGroup')
-        default.insert(default.index('Batch') + 1, 'SubGroup')
         schematas['default'] = default
         return schematas
 
@@ -81,22 +49,19 @@ class AnalysisRequestSchemaModifier(object):
 
         return schema
 
-
-class WidgetVisibility(_WV):
-
-    def __call__(self):
-        ret = _WV.__call__(self)
-
-        workflow = getToolByName(self.context, 'portal_workflow')
-        state = workflow.getInfoFor(self.context, 'review_state')
-
-        index_of_batch_field = ret['header_table']['visible'].index('Batch')+1
-        ret['header_table']['visible'].insert(index_of_batch_field, 'SubGroup')
-        if 'Batch' in ret['view']['visible']:
-            index_of_batch_field = ret['view']['visible'].index('Batch')+1
-            ret['view']['visible'].insert(index_of_batch_field, 'SubGroup')
-        elif 'Batch' in ret['edit']['visible']:
-            index_of_batch_field = ret['edit']['visible'].index('Batch')+1
-            ret['edit']['visible'].insert(index_of_batch_field, 'SubGroup')
-        return ret
+# this is done in bika.lims
+# class WidgetVisibility(_WV):
+#     def __call__(self):
+#         ret = _WV.__call__(self)
+#         workflow = getToolByName(self.context, 'portal_workflow')
+#         state = workflow.getInfoFor(self.context, 'review_state')
+#         index_of_batch_field = ret['header_table']['visible'].index('Batch')+1
+#         ret['header_table']['visible'].insert(index_of_batch_field, 'SubGroup')
+#         if 'Batch' in ret['view']['visible']:
+#             index_of_batch_field = ret['view']['visible'].index('Batch')+1
+#             ret['view']['visible'].insert(index_of_batch_field, 'SubGroup')
+#         elif 'Batch' in ret['edit']['visible']:
+#             index_of_batch_field = ret['edit']['visible'].index('Batch')+1
+#             ret['edit']['visible'].insert(index_of_batch_field, 'SubGroup')
+#         return ret
 

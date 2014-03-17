@@ -8,7 +8,6 @@ The two files must be kept in sync.
 AddCountry = 'BIKA: Add Country'
 AddRegion = 'BIKA: Add Region'
 AddCultivar = 'BIKA: Add Cultivar'
-AddSubGroup = 'BIKA: Add Sub-group'
 AddWineType = 'BIKA: Add Wine type'
 AddTransportCondition = 'BIKA: Add Transport condition'
 AddStorageCondition = 'BIKA: Add Storage condition'

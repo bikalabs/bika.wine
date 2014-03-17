@@ -7,7 +7,6 @@ class AnalysisRequestsView(_ARV):
     def __init__(self, context, request):
         super(AnalysisRequestsView, self).__init__(context, request)
         self.columns.update({
-            'SubGroup': {'title': _('Sub-group')},
             'WorksOrderID': {'title': _('Works Order ID')},
             'BlendNumber': {'title': _('Blend Number')},
         })
@@ -17,7 +16,6 @@ class AnalysisRequestsView(_ARV):
             pos = state['columns'].index('BatchID') + 1
             state['columns'].insert(pos, 'BlendNumber')
             state['columns'].insert(pos, 'WorksOrderID')
-            state['columns'].insert(pos, 'SubGroup')
             new_states.append(state)
         self.review_states = new_states
 
@@ -30,8 +28,6 @@ class AnalysisRequestsView(_ARV):
 
             batch = obj.Schema().getField('Batch').get(obj)
             if batch:
-                val = obj.Schema().getField('SubGroup').get(obj)
-                items[x]['SubGroup'] = val.Title() if val else ''
 
                 val = batch.Schema().getField('WorksOrderID').get(batch)
                 items[x]['WorksOrderID'] = val
@@ -44,5 +40,4 @@ class AnalysisRequestsView(_ARV):
             else:
                 items[x]['WorksOrderID'] = ''
                 items[x]['BlendNumber'] = ''
-                items[x]['SubGroup'] = ''
         return items

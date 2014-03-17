@@ -14,12 +14,6 @@
     </type>
     <type type_id="Regions"/>
 
-    <type type_id="SubGroups"/>
-    <type type_id="SubGroup">
-      <bound-workflow workflow_id="bika_one_state_workflow"/>
-      <bound-workflow workflow_id="bika_inactive_workflow"/>
-    </type>
-
     <type type_id="WineTypes"/>
     <type type_id="WineType">
       <bound-workflow workflow_id="bika_one_state_workflow"/>

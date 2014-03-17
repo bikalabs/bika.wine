@@ -4,7 +4,6 @@
   <type portal_type="Country"/>
   <type portal_type="Region"/>
   <type portal_type="Cultivar"/>
-  <type portal_type="SubGroup"/>
   <type portal_type="WineType"/>
   <type portal_type="TransportCondition"/>
   <type portal_type="StorageCondition"/>

@@ -9,12 +9,6 @@
       provides="bika.lims.interfaces.ISetupDataSetList"/>
 
     <adapter
-      name="Sub_Groups"
-      factory="bika.wine.setupdata.Sub_Groups"
-      provides="bika.lims.interfaces.ISetupDataImporter"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
-
-    <adapter
       name="Storage_Conditions"
       factory="bika.wine.setupdata.Storage_Conditions"
       provides="bika.lims.interfaces.ISetupDataImporter"
