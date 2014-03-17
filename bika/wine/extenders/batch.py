@@ -14,7 +14,6 @@ from Products.CMFPlone.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from zope.component import adapts
 from zope.interface import implements
-from plone.indexer import indexer
 
 
 class InheritedObjectsUIField(ExtensionField, RecordsField):
