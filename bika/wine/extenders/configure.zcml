@@ -20,6 +20,4 @@
     <adapter factory=".samplepoint.SamplePointSchemaExtender" />
     <adapter factory=".samplepoint.SamplePointSchemaModifier" />
 
-    <adapter name="BatchDate" factory=".batch.BatchDate" />
-
 </configure>

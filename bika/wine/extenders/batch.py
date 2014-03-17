@@ -73,13 +73,6 @@ class BatchSchemaExtender(object):
                 label=_('Blend Number'),
             ),
         ),
-        ExtDateTimeField(
-            'BatchDate',
-            required=False,
-            widget=DateTimeWidget(
-                label=_b('Date'),
-            ),
-        ),
         ExtFloatField(
             'LabelAlcohol',
             required=False,
@@ -159,7 +152,6 @@ class BatchSchemaExtender(object):
         default = schematas['default']
         to_insert = [{'name': 'WorksOrderID', 'before': 'description'},
                      {'name': 'BlendNumber', 'before': 'description'},
-                     {'name': 'BatchDate', 'before': 'description'},
                      {'name': 'LabelAlcohol', 'before': 'description'}]
         for field in to_insert:
             name = field['name']
@@ -189,9 +181,6 @@ class BatchSchemaModifier(object):
         return schema
 
 
-@indexer(IBatch)
-def BatchDate(instance):
-    return instance.Schema().getField('BatchDate').get(instance)
 
 
 

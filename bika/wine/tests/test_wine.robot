@@ -22,7 +22,6 @@ Test AR new changed and removed fields
     Input Text                          description             Nothing to see here...
     Input Text                          WorksOrderID            woid1
     Input Text                          LabelAlcohol            15%
-    Click element                       BatchDate
     Click Link                          1
     Click Button                        Save
     ## Add Requests in Batch
@@ -99,7 +98,6 @@ Test batch inherited ARs
     Input Text                          description             contains ARs.
     Input Text                          WorksOrderID            IWOID1
     Input Text                          LabelAlcohol            25%
-    SelectDate                          BatchDate               1
     Click Button                        Save
 
     go to                               ${PLONEURL}/batches/B-001/analysisrequests
@@ -128,7 +126,6 @@ Test batch inherited ARs
     Input Text                          description     Inherit, delete, rinse, repeat
     Input Text                          WorksOrderID    IWOID2
     Input Text                          LabelAlcohol    25%
-    SelectDate                          BatchDate       1
     Click Button                        Save
 
     go to                               ${PLONEURL}/batches/B-002/base_edit
