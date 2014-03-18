@@ -13,7 +13,9 @@ ${PLONEURL}        http://localhost:55001/plone
 *** Test Cases ***
 
 Test AR new changed and removed fields
+    sleep    2
     Log in                              test_labmanager         test_labmanager
+    sleep    2
     ## Add Batch
     Go to                               ${PLONEURL}/batches
     Click Link                          Add
@@ -22,7 +24,6 @@ Test AR new changed and removed fields
     Input Text                          description             Nothing to see here...
     Input Text                          WorksOrderID            woid1
     Input Text                          LabelAlcohol            15%
-    Click Link                          1
     Click Button                        Save
     ## Add Requests in Batch
     go to                               ${PLONEURL}/batches/B-001/analysisrequests
@@ -56,8 +57,9 @@ Test AR new changed and removed fields
     Should be equal                     ${client_name}          Second Client   Client should be "Second Client" in this client's context
 
 Test SampleType fields
+    sleep    2
     Log in                              test_labmanager         test_labmanager
-
+    sleep    2
     Go to                               ${PLONEURL}/bika_setup/bika_sampletypes
     Click link                          Red Wine
     Click link                          Wine
@@ -79,79 +81,13 @@ Test SampleType fields
     Should be equal                     ${value}                Red Wine
     ${value} =                          Get Value               Vintage
     Should be equal                     ${value}                2002
-    ${value} =                          Get Value               Cabernet Savignon
-    Should be equal                     ${value}                a_varietal
+    ${value} =                          Get Value               Cultivar
+    Should be equal                     ${value}                Cabernet Savignon
     ${value} =                          Get Value               Region
-    Should be equal                     ${value}                North             # buglet: shows only 'Title', tho ui_item=Name.
+    Should be equal                     ${value}                North
     ${value} =                          Get Value               LabelAlcohol
     Should be equal                     ${value}                15.0
     Xpath Should Match X Times          //div[@class='reference_multi_item']//img[@class='deletebtn']    2
-
-Test batch inherited ARs
-    Log in                              test_labmanager         test_labmanager
-
-    ## Add batch
-    Go to                               ${PLONEURL}/batches
-    Click Link                          Add
-    Input Text                          title                   First Batch
-    select from dropdown                Client                  Happy
-    Input Text                          description             contains ARs.
-    Input Text                          WorksOrderID            IWOID1
-    Input Text                          LabelAlcohol            25%
-    Click Button                        Save
-
-    go to                               ${PLONEURL}/batches/B-001/analysisrequests
-    select from list                    col_count           6
-    click link                          Add new
-    wait until page contains            Request new analyses
-    Select from dropdown                ar_0_Contact            Rita
-    Click element                       css=.ContactCopyButton
-    SelectDate                          ar_0_SamplingDate       1
-    Click element                       css=.SamplingDateCopyButton
-    Select from dropdown                ar_0_SampleType         Water
-    Click element                       css=.SampleTypeCopyButton
-    Click element                       css=#cat_lab_Metals
-    Select checkbox                     xpath=//input[@title='Calcium'][1]
-    Click element                       xpath=//img[@name='Calcium']
-    Set Selenium Timeout                30
-    Click Button                        Save
-    Wait until page contains            created
-    Set Selenium Timeout                10
-
-    ## Add second batch
-    Go to                               ${PLONEURL}/batches
-    Click Link                          Add
-    Input Text                          title           Second Batch
-    select from dropdown                Client          Happy
-    Input Text                          description     Inherit, delete, rinse, repeat
-    Input Text                          WorksOrderID    IWOID2
-    Input Text                          LabelAlcohol    25%
-    Click Button                        Save
-
-    go to                               ${PLONEURL}/batches/B-002/base_edit
-    click element                       InheritedObjectsUI_more
-    click element                       InheritedObjectsUI_more
-    click element                       InheritedObjectsUI_more
-    click element                       InheritedObjectsUI_more
-    select from dropdown                InheritedObjectsUI-Title-0    0001
-    select from dropdown                InheritedObjectsUI-Title-1    0002
-    select from dropdown                InheritedObjectsUI-Title-2    0003
-    select from dropdown                InheritedObjectsUI-Title-3    0004
-    select from dropdown                InheritedObjectsUI-Title-4    0005
-    Click button                        Save
-
-    go to                               ${PLONEURL}/batches/B-002/base_edit
-    Click element                       delete-row-0
-    Click button                        Save
-    go to                               ${PLONEURL}/batches/B-002/base_edit
-    page should not contain element     delete-row-5
-    Click element                       delete-row-0
-    Click element                       delete-row-1
-    Click element                       delete-row-2
-    Click element                       delete-row-3
-    select from dropdown                InheritedObjectsUI-Title-4    IWOID1
-    click button                        Save
-    go to                               ${PLONEURL}/batches/B-002/batchbook
 
 
 *** Keywords ***

@@ -3,17 +3,6 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="bika">
 
-    <!-- This has to be done here, because in portal_factory edit forms,
-         the context is the parent folder, not the new batch
-    -->
-    <browser:page
-      for="bika.lims.interfaces.IBatchFolder"
-      name="getAnalysisContainers"
-      class="bika.wine.browser.batchfolder.getanalysiscontainers.getAnalysisContainers"
-      permission="zope.Public"
-      layer="bika.lims.interfaces.IBikaLIMS"
-    />
-
     <adapter
       factory="bika.wine.browser.batchfolder.ClientContactVocabularyFactory"
       provides="bika.lims.interfaces.IDisplayListVocabulary"

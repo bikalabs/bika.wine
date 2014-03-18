@@ -11,12 +11,5 @@
       permission="zope2.View"
       layer="bika.lims.interfaces.IBikaLIMS"
     />
-    <browser:page
-      for="bika.lims.interfaces.IBatch"
-      name="getAnalysisContainers"
-      class="bika.wine.browser.batchfolder.getanalysiscontainers.getAnalysisContainers"
-      permission="zope.Public"
-      layer="bika.lims.interfaces.IBikaLIMS"
-    />
 
 </configure>
