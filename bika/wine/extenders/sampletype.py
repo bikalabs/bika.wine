@@ -95,6 +95,7 @@ class SampleTypeSchemaExtender(object):
         ),
         ExtReferenceField(
             'TransportConditions',
+            multiValued=1,
             required=0,
             allowed_types=('TransportCondition'),
             referenceClass = HoldingReference,
@@ -113,6 +114,7 @@ class SampleTypeSchemaExtender(object):
         ),
         ExtReferenceField(
             'StorageConditions',
+            multiValued=1,
             required=0,
             allowed_types=('StorageCondition'),
             referenceClass = HoldingReference,
