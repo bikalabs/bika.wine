@@ -27,4 +27,20 @@
       layer="bika.lims.interfaces.IBikaLIMS"
     />
 
+    <browser:page
+      for="bika.lims.interfaces.IBatch"
+      name="getAnalysisContainers"
+      class="bika.wine.browser.batch.getAnalysisContainers"
+      permission="zope.Public"
+      layer="bika.lims.interfaces.IBikaLIMS"
+    />
+
+    <browser:page
+      for="bika.lims.interfaces.IBatchFolder"
+      name="getAnalysisContainers"
+      class="bika.wine.browser.batch.getAnalysisContainers"
+      permission="zope.Public"
+      layer="bika.lims.interfaces.IBikaLIMS"
+    />
+
 </configure>
