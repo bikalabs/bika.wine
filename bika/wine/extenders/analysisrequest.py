@@ -1,13 +1,11 @@
 from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
 from archetypes.schemaextender.interfaces import ISchemaModifier
-from bika.wine import bikaMessageFactory as _
-from bika.lims import bikaMessageFactory as _b
+from bika.lims import bikaMessageFactory as _
 from bika.lims.browser.analysisrequest import WidgetVisibility as _WV
 from bika.lims.fields import *
-from bika.lims.browser.widgets import ReferenceWidget
+from bika.lims.browser.widgets import DateTimeWidget as bikaDateTimeWidget
 from bika.lims.interfaces import IAnalysisRequest
-from Products.Archetypes.references import HoldingReference
-from Products.CMFCore.utils import getToolByName
+from bika.wine.extenders.sample import BestBeforeDateField
 from zope.component import adapts
 from zope.interface import implements
 
@@ -17,6 +15,15 @@ class AnalysisRequestSchemaExtender(object):
     implements(IOrderableSchemaExtender)
 
     fields = [
+        # This is included here but refers to the sample
+        BestBeforeDateField(
+            'BestBeforeDate',
+            widget=bikaDateTimeWidget(
+                label=_("Best Before Date"),
+                visible={'view': 'visible', 'edit': 'visible'},
+                modes=('view', 'edit')
+            ),
+        ),
     ]
 
     def __init__(self, context):
@@ -24,7 +31,9 @@ class AnalysisRequestSchemaExtender(object):
 
     def getOrder(self, schematas):
         default = schematas['default']
-        schematas['default'] = default
+        if 'BestBeforeDate' in default:
+            default.remove('BestBeforeDate')
+        default.insert(default.index('SamplingDate'), 'BestBeforeDate')
         return schematas
 
     def getFields(self):
@@ -49,19 +58,17 @@ class AnalysisRequestSchemaModifier(object):
 
         return schema
 
-# this is done in bika.lims
-# class WidgetVisibility(_WV):
-#     def __call__(self):
-#         ret = _WV.__call__(self)
-#         workflow = getToolByName(self.context, 'portal_workflow')
-#         state = workflow.getInfoFor(self.context, 'review_state')
-#         index_of_batch_field = ret['header_table']['visible'].index('Batch')+1
-#         ret['header_table']['visible'].insert(index_of_batch_field, 'SubGroup')
-#         if 'Batch' in ret['view']['visible']:
-#             index_of_batch_field = ret['view']['visible'].index('Batch')+1
-#             ret['view']['visible'].insert(index_of_batch_field, 'SubGroup')
-#         elif 'Batch' in ret['edit']['visible']:
-#             index_of_batch_field = ret['edit']['visible'].index('Batch')+1
-#             ret['edit']['visible'].insert(index_of_batch_field, 'SubGroup')
-#         return ret
 
+class WidgetVisibility(_WV):
+
+    def __call__(self):
+        ret = _WV.__call__(self)
+
+        pos = ret['header_table']['visible'].index('SamplingDate') + 1
+        ret['header_table']['visible'].insert(pos, 'BestBeforeDate')
+        pos = ret['view']['visible'].index('SamplingDate') + 1
+        ret['view']['visible'].insert(pos, 'BestBeforeDate')
+        # pos = ret['edit']['visible'].index('SamplingDate')+1
+        # ret['edit']['visible'].insert(pos, 'BestBeforeDate')
+
+        return ret

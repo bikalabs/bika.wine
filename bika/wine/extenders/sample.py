@@ -1,41 +1,46 @@
 from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
 from archetypes.schemaextender.interfaces import ISchemaModifier
+from bika.lims import bikaMessageFactory as _
+from bika.lims.browser.sample import WidgetVisibility as _WV
 from bika.lims.fields import *
+from bika.lims.browser.widgets import DateTimeWidget as bikaDateTimeWidget
 from bika.lims.interfaces import ISample
+from bika.wine.utils import add_months
 from Products.Archetypes.public import *
-from zope.component import adapts
-from zope.interface import implements
 from Products.ATContentTypes.utils import DT2dt
 from Products.ATContentTypes.utils import dt2DT
-from datetime import timedelta
+from Products.CMFCore.utils import getToolByName
+from zope.component import adapts
+from zope.interface import implements
 
 
-class SampleSchemaExtender(object):
-    adapts(ISample)
-    implements(IOrderableSchemaExtender)
+class BestBeforeDateField(ExtComputedField):
 
-    fields = [
-        ExtDateTimeField(
-            'BestBeforeDate',
-            widget=ComputedWidget(
-                visible=False,
-            ),
-        ),
-    ]
+    """Field to calculate BestBeforeDate of a sample.  This is done using
+    the "ShelfLife" field of the SampleType, added to either the DateSampled
+    or the SamplingDate.
+    """
 
-    def __init__(self, context):
-        self.context = context
+    def getDefault(self, instance):
+            pc = getToolByName(instance, 'portal_catalog')
+            proxies = pc(portal_type='Client', sort_on='created')
+            if proxies:
+                return proxies[0].getObject()
 
-    def getBestBeforeDate(self):
+    def get(self, instance, **kwargs):
         bb = ''
-        sampletype = self.getSampleType()
-        DateSampled = self.getDateSampled()
+        sample = instance.getSample() \
+            if instance.portal_type == 'AnalysisRequest' else instance
+        sampletype = sample.getSampleType()
+        FromDate = sample.getDateSampled()
+        if not FromDate:
+            FromDate = sample.getSamplingDate()
         months = sampletype.Schema().getField('ShelfLife').get(sampletype)
-        if DateSampled and months:
-            datesampled = DT2dt(DateSampled)
+        if FromDate and months:
+            FromDate = DT2dt(FromDate)
             try:
                 months = int(months)
-                bb = datesampled + timedelta(months=months)
+                bb = add_months(FromDate, months)
                 bb = dt2DT(bb)
             except ValueError:
                 bb = ''
@@ -43,12 +48,51 @@ class SampleSchemaExtender(object):
             bb = ''
         return bb
 
-    def getOrder(self, schematas):
+    def getRaw(self, instance, **kwargs):
+        bb = ''
+        sample = instance.getSample() \
+            if instance.portal_type == 'AnalysisRequest' else instance
+        sampletype = sample.getSampleType()
+        FromDate = sample.getDateSampled()
+        if not FromDate:
+            FromDate = sample.getSamplingDate()
+        months = sampletype.Schema().getField('ShelfLife').get(sampletype)
+        if FromDate and months:
+            FromDate = DT2dt(FromDate)
+            try:
+                months = int(months)
+                bb = add_months(FromDate, months)
+                bb = dt2DT(bb)
+            except ValueError:
+                bb = ''
+        else:
+            bb = ''
+        return bb
 
+
+class SampleSchemaExtender(object):
+    adapts(ISample)
+    implements(IOrderableSchemaExtender)
+
+    fields = [
+        BestBeforeDateField(
+            'BestBeforeDate',
+            widget=bikaDateTimeWidget(
+                label=_("Best Before Date"),
+                visible={'view': 'visible', 'edit': 'visible', 'header_table': 'visible'},
+                modes=('view', 'edit')
+            ),
+        ),
+    ]
+
+    def __init__(self, context):
+        self.context = context
+
+    def getOrder(self, schematas):
         default = schematas['default']
         if 'BestBeforeDate' in default:
             default.remove('BestBeforeDate')
-        default.insert(default.index('title'), 'BestBeforeDate')
+        default.insert(default.index('SamplingDate'), 'BestBeforeDate')
         return schematas
 
     def getFields(self):
@@ -73,3 +117,17 @@ class SampleSchemaModifier(object):
         schema['SamplingDate'].widget.show_time = True
 
         return schema
+
+
+class WidgetVisibility(_WV):
+
+    def __call__(self):
+        ret = _WV.__call__(self)
+
+        pos = ret['header_table']['visible'].index('SamplingDate') + 1
+        ret['header_table']['visible'].insert(pos, 'BestBeforeDate')
+        pos = ret['view']['visible'].index('SamplingDate') + 1
+        ret['view']['visible'].insert(pos, 'BestBeforeDate')
+        # pos = ret['edit']['visible'].index('SamplingDate')+1
+        # ret['edit']['visible'].insert(pos, 'BestBeforeDate')
+        return ret

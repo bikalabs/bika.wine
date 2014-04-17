@@ -1,6 +1,8 @@
 from bika.lims.browser import BrowserView
 from Products.ATContentTypes.utils import dt2DT
 
+import calendar
+import datetime
 import datetime
 import json
 import plone.protect
@@ -45,3 +47,11 @@ class Alerts(BrowserView):
             )
 
         return json.dumps(ret)
+
+
+def add_months(sourcedate, months):
+    month = sourcedate.month - 1 + months
+    year = sourcedate.year + month / 12
+    month = month % 12 + 1
+    day = min(sourcedate.day, calendar.monthrange(year, month)[1])
+    return datetime.datetime(year, month, day)
