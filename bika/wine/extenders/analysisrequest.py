@@ -64,11 +64,16 @@ class WidgetVisibility(_WV):
     def __call__(self):
         ret = _WV.__call__(self)
 
-        pos = ret['header_table']['visible'].index('SamplingDate') + 1
+        if 'SamplingDate' in ret['header_table']['visible']:
+            pos = ret['header_table']['visible'].index('SamplingDate') + 1
+        else:
+            pos = len(ret['header_table']['visible']) - 1
         ret['header_table']['visible'].insert(pos, 'BestBeforeDate')
-        pos = ret['view']['visible'].index('SamplingDate') + 1
+
+        if 'SamplingDate' in ret['view']['visible']:
+            pos = ret['view']['visible'].index('SamplingDate') + 1
+        else:
+            pos = len(ret['view']['visible']) - 1
         ret['view']['visible'].insert(pos, 'BestBeforeDate')
-        # pos = ret['edit']['visible'].index('SamplingDate')+1
-        # ret['edit']['visible'].insert(pos, 'BestBeforeDate')
 
         return ret
