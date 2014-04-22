@@ -12,4 +12,13 @@
         sortkey="1"
         profile="bika.wine:default"/>
 
+<genericsetup:upgradeStep
+        title="remove AR copy_from.js"
+        description="Quick script to reimport jsregistry: ar_copy_from was moved to bika.lims"
+        source="1001"
+        destination="1002"
+        handler="bika.wine.upgrade.to1002.upgrade"
+        sortkey="1"
+        profile="bika.wine:default"/>
+
 </configure>

@@ -22,6 +22,7 @@
   <include package=".extenders"/>
   <include package=".static"/>
   <include package=".setupdata"/>
+  <include package=".upgrade"/>
 
   <include file="profiles.zcml" />
 
