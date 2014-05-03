@@ -31,6 +31,9 @@ class BestBeforeDateField(ExtComputedField):
         bb = ''
         sample = instance.getSample() \
             if instance.portal_type == 'AnalysisRequest' else instance
+        if not sample:
+            # portal_factory ARs have no sample.
+            return ''
         sampletype = sample.getSampleType()
         FromDate = sample.getDateSampled()
         if not FromDate:
