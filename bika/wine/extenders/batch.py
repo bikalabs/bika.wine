@@ -21,6 +21,8 @@ class BatchSchemaExtender(object):
             required=True,
             widget=StringWidget(
                 label=_('Works Order ID'),
+                visible = {'view':'visible',
+                           'edit': 'visible'}
             ),
         ),
         ExtStringField(
@@ -28,6 +30,8 @@ class BatchSchemaExtender(object):
             required=False,
             widget=StringWidget(
                 label=_('Blend Number'),
+                visible = {'view':'visible',
+                           'edit': 'visible'}
             ),
         ),
         ExtFloatField(
@@ -37,6 +41,8 @@ class BatchSchemaExtender(object):
             widget=bikaDecimalWidget(
                 label=_('Label Alcohol'),
                 unit='%',
+                visible = {'view':'visible',
+                           'edit': 'visible'}
             ),
         ),
     ]
@@ -72,16 +78,3 @@ class BatchSchemaModifier(object):
         schema['title'].required = True
         schema['title'].widget.visible = True
         return schema
-
-
-
-
-
-# class WidgetVisibility(_WV):
-
-#     def __call__(self):
-#         ret = _WV.__call__(self)
-#         if self.context.aq_parent.portal_type == 'Client':
-#             ret['add']['visible'].remove('Client')
-#             ret['add']['hidden'].append('Client')
-#         return ret

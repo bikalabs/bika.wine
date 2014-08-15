@@ -1,7 +1,6 @@
 from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
 from archetypes.schemaextender.interfaces import ISchemaModifier
 from bika.lims import bikaMessageFactory as _
-from bika.lims.browser.analysisrequest import WidgetVisibility as _WV
 from bika.lims.fields import *
 from bika.lims.browser.widgets import DateTimeWidget as bikaDateTimeWidget
 from bika.lims.interfaces import IAnalysisRequest
@@ -20,7 +19,8 @@ class AnalysisRequestSchemaExtender(object):
             'BestBeforeDate',
             widget=bikaDateTimeWidget(
                 label=_("Best Before Date"),
-                visible={'view': 'visible', 'edit': 'visible'},
+                visible={'view': 'visible',
+                         'edit': 'visible'},
                 modes=('view', 'edit')
             ),
         ),
@@ -48,32 +48,8 @@ class AnalysisRequestSchemaModifier(object):
         self.context = context
 
     def fiddle(self, schema):
-        toremove = ['AdHoc', 'Composite', 'InvoiceExclude']
-        for field in toremove:
-            schema[field].required = False
-            schema[field].widget.visible = False
 
         # Add timepicker to SamplingDate
         schema['SamplingDate'].widget.show_time = True
 
         return schema
-
-
-class WidgetVisibility(_WV):
-
-    def __call__(self):
-        ret = _WV.__call__(self)
-
-        if 'SamplingDate' in ret['header_table']['visible']:
-            pos = ret['header_table']['visible'].index('SamplingDate') + 1
-        else:
-            pos = len(ret['header_table']['visible']) - 1
-        ret['header_table']['visible'].insert(pos, 'BestBeforeDate')
-
-        if 'SamplingDate' in ret['view']['visible']:
-            pos = ret['view']['visible'].index('SamplingDate') + 1
-        else:
-            pos = len(ret['view']['visible']) - 1
-        ret['view']['visible'].insert(pos, 'BestBeforeDate')
-
-        return ret

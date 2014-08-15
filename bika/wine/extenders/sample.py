@@ -1,7 +1,6 @@
 from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
 from archetypes.schemaextender.interfaces import ISchemaModifier
-from bika.lims import bikaMessageFactory as _
-from bika.lims.browser.sample import WidgetVisibility as _WV
+from bika.wine import bikaMessageFactory as _
 from bika.lims.fields import *
 from bika.lims.browser.widgets import DateTimeWidget as bikaDateTimeWidget
 from bika.lims.interfaces import ISample
@@ -55,6 +54,9 @@ class BestBeforeDateField(ExtComputedField):
         bb = ''
         sample = instance.getSample() \
             if instance.portal_type == 'AnalysisRequest' else instance
+        if not sample:
+            # portal_factory ARs have no sample.
+            return ''
         sampletype = sample.getSampleType()
         FromDate = sample.getDateSampled()
         if not FromDate:
@@ -78,11 +80,12 @@ class SampleSchemaExtender(object):
     implements(IOrderableSchemaExtender)
 
     fields = [
-        BestBeforeDateField(
-            'BestBeforeDate',
+        BestBeforeDateField('BestBeforeDate',
             widget=bikaDateTimeWidget(
                 label=_("Best Before Date"),
-                visible={'view': 'visible', 'edit': 'visible', 'header_table': 'visible'},
+                visible={'view': 'visible',
+                         'edit': 'visible',
+                         'header_table': 'visible'},
                 modes=('view', 'edit')
             ),
         ),
@@ -120,23 +123,3 @@ class SampleSchemaModifier(object):
         schema['SamplingDate'].widget.show_time = True
 
         return schema
-
-
-class WidgetVisibility(_WV):
-
-    def __call__(self):
-        ret = _WV.__call__(self)
-
-        if 'SamplingDate' in ret['header_table']['visible']:
-            pos = ret['header_table']['visible'].index('SamplingDate') + 1
-        else:
-            pos = len(ret['header_table']['visible']) - 1
-        ret['header_table']['visible'].insert(pos, 'BestBeforeDate')
-
-        if 'SamplingDate' in ret['view']['visible']:
-            pos = ret['view']['visible'].index('SamplingDate') + 1
-        else:
-            pos = len(ret['view']['visible']) - 1
-        ret['view']['visible'].insert(pos, 'BestBeforeDate')
-
-        return ret
