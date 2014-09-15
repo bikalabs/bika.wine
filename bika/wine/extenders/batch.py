@@ -52,14 +52,14 @@ class BatchSchemaExtender(object):
 
     def getOrder(self, schematas):
         default = schematas['default']
-        to_insert = [{'name': 'WorksOrderID', 'before': 'description'},
-                     {'name': 'BlendNumber', 'before': 'description'},
-                     {'name': 'LabelAlcohol', 'before': 'description'}]
+        to_insert = [{'name': 'WorksOrderID', 'after': 'description'},
+                     {'name': 'BlendNumber', 'after': 'description'},
+                     {'name': 'LabelAlcohol', 'after': 'description'}]
         for field in to_insert:
             name = field['name']
             if name in default:
                 default.remove(name)
-            default.insert(default.index(field['before']), name)
+            default.insert(default.index(field['after'])+1, name)
         return schematas
 
     def getFields(self):
@@ -75,6 +75,4 @@ class BatchSchemaModifier(object):
 
     def fiddle(self, schema):
         schema['ClientBatchID'].widget.visible = False
-        schema['title'].required = True
-        schema['title'].widget.visible = True
         return schema
