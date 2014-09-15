@@ -6,14 +6,6 @@
 
     <browser:page
       for="bika.lims.interfaces.IClient"
-      name="batches"
-      class="bika.wine.browser.client.batches.BatchesView"
-      permission="bika.lims.ManageClients"
-      layer="bika.lims.interfaces.IBikaLIMS"
-    />
-
-    <browser:page
-      for="bika.lims.interfaces.IClient"
       name="base_view"
       class="bika.wine.browser.client.analysisrequests.AnalysisRequestsView"
       permission="bika.lims.ManageClients"
