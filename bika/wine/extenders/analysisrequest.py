@@ -18,7 +18,7 @@ class AnalysisRequestSchemaExtender(object):
         BestBeforeDateField(
             'BestBeforeDate',
             widget=bikaDateTimeWidget(
-                label=_("Best Before Date"),
+                label = "Best Before Date",
                 visible={'view': 'visible',
                          'edit': 'visible'},
                 modes=('view', 'edit')

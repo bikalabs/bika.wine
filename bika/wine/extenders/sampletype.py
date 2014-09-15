@@ -21,7 +21,7 @@ class SampleTypeSchemaExtender(object):
             'Vintage',
             required=False,
             widget=StringWidget(
-                label=_('Vintage'),
+                label = "Vintage",
             ),
         ),
         ExtReferenceField(
@@ -32,7 +32,7 @@ class SampleTypeSchemaExtender(object):
             relationship = 'SampleTypeWineType',
             format='select',
             widget=bikaReferenceWidget(
-                label=_('Wine type'),
+                label = "Wine type",
                 render_own_label=False,
                 visible={'edit': 'visible',
                          'view': 'visible',
@@ -50,7 +50,7 @@ class SampleTypeSchemaExtender(object):
             relationship = 'SampleTypeCultivar',
             format='select',
             widget=bikaReferenceWidget(
-                label=_('Cultivar'),
+                label = "Cultivar",
                 render_own_label=False,
                 visible={'edit': 'visible',
                          'view': 'visible',
@@ -65,7 +65,7 @@ class SampleTypeSchemaExtender(object):
             required=False,
             validators=('percentvalidator'),
             widget=bikaDecimalWidget(
-                label=_('Label Alcohol'),
+                label = "Label Alcohol",
                 unit='%',
             ),
         ),
@@ -77,7 +77,7 @@ class SampleTypeSchemaExtender(object):
             relationship = 'SampleTypeRegion',
             format='select',
             widget=bikaReferenceWidget(
-                label=_('Region'),
+                label = "Region",
                 render_own_label=False,
                 visible={'edit': 'visible',
                          'view': 'visible',
@@ -102,7 +102,7 @@ class SampleTypeSchemaExtender(object):
             relationship = 'SampleTypeTransportCondition',
             format='select',
             widget=bikaReferenceWidget(
-                label=_('TransportCondition'),
+                label = "TransportCondition",
                 render_own_label=False,
                 visible={'edit': 'visible',
                          'view': 'visible',
@@ -121,7 +121,7 @@ class SampleTypeSchemaExtender(object):
             relationship = 'SampleTypeStorageCondition',
             format='select',
             widget=bikaReferenceWidget(
-                label=_('StorageCondition'),
+                label = "StorageCondition",
                 render_own_label=False,
                 visible={'edit': 'visible',
                          'view': 'visible',
@@ -135,16 +135,16 @@ class SampleTypeSchemaExtender(object):
             'ShelfLifeType',
             required=False,
             widget=StringWidget(
-                label=_('Shelf life type'),
-                description=_('Shelf life text to be printed on COA'),
+                label = "Shelf life type",
+                description = "Shelf life text to be printed on COA",
             ),
         ),
         ExtStringField(
             'ShelfLife',
             required=False,
             widget=StringWidget(
-                label=_('Shelf life'),
-                description=_('Shelf life in months'),
+                label = "Shelf life",
+                description = "Shelf life in months",
             ),
         ),
     ]
