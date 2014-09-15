@@ -28,7 +28,7 @@ class RegionsView(BikaListingView):
         }
         self.icon = self.portal_url + \
             "/++resource++bika.wine.images/region.png"
-        self.title = _("Regions")
+        self.title = self.context.translate(_("Regions"))
         self.description = ""
         self.show_sort_column = False
         self.show_select_row = False

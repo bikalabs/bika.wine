@@ -29,7 +29,7 @@ class StorageConditionsView(BikaListingView):
         }
         self.icon = self.portal_url + \
             "/++resource++bika.wine.images/storagecondition_big.png"
-        self.title = _("Storage conditions")
+        self.title = self.context.translate(_("Storage conditions"))
         self.description = ""
         self.show_sort_column = False
         self.show_select_row = False

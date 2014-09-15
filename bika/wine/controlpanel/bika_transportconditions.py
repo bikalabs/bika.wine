@@ -29,7 +29,7 @@ class TransportConditionsView(BikaListingView):
         }
         self.icon = self.portal_url + \
             "/++resource++bika.wine.images/transportcondition_big.png"
-        self.title = _("Transport conditions")
+        self.title =self.context.translate( _("Transport conditions"))
         self.description = ""
         self.show_sort_column = False
         self.show_select_row = False

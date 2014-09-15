@@ -28,7 +28,7 @@ class WineTypesView(BikaListingView):
         }
         self.icon = self.portal_url + \
             "/++resource++bika.wine.images/winetype_big.png"
-        self.title = _("Wine types")
+        self.title = self.context.translate(_("Wine types"))
         self.description = ""
         self.show_sort_column = False
         self.show_select_row = False
