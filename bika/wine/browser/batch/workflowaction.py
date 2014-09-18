@@ -39,25 +39,6 @@ class BatchWorkflowAction(WorkflowAction):
             self.request.response.redirect(self.request.get('URL'))
             return
 
-        elif action == 'copy_to_new':
-
-            objects = WorkflowAction._get_selected_items(self)
-            if not objects:
-                message = self.context.translate(
-                    _("No analyses have been selected"))
-                self.context.plone_utils.addPortalMessage(message, 'info')
-                self.destination_url = self.context.absolute_url() + \
-                    "/batchbook"
-                self.request.response.redirect(self.destination_url)
-                return
-
-            url = self.context.absolute_url() + "/portal_factory/" + \
-                "AnalysisRequest/Request new analyses/ar_add" + \
-                "?col_count={0}".format(len(objects)) + \
-                "&copy_from={0}".format(",".join(objects.keys()))
-            self.request.response.redirect(url)
-            return
-
         else:
 
             WorkflowAction.__call__(self)
