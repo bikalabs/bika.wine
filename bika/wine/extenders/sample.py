@@ -82,7 +82,7 @@ class SampleSchemaExtender(object):
     fields = [
         BestBeforeDateField('BestBeforeDate',
             widget=bikaDateTimeWidget(
-                label=_("Best Before Date"),
+                label = "Best Before Date",
                 visible={'view': 'visible',
                          'edit': 'visible',
                          'header_table': 'visible'},

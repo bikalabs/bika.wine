@@ -20,7 +20,7 @@ class BatchSchemaExtender(object):
             'WorksOrderID',
             required=True,
             widget=StringWidget(
-                label=_('Works Order ID'),
+                label = "Works Order ID",
                 visible = {'view':'visible',
                            'edit': 'visible'}
             ),
@@ -29,7 +29,7 @@ class BatchSchemaExtender(object):
             'BlendNumber',
             required=False,
             widget=StringWidget(
-                label=_('Blend Number'),
+                label = "Blend Number",
                 visible = {'view':'visible',
                            'edit': 'visible'}
             ),
@@ -39,7 +39,7 @@ class BatchSchemaExtender(object):
             required=False,
             validators=('percentvalidator'),
             widget=bikaDecimalWidget(
-                label=_('Label Alcohol'),
+                label = "Label Alcohol",
                 unit='%',
                 visible = {'view':'visible',
                            'edit': 'visible'}
