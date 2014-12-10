@@ -13,14 +13,6 @@
 
     <browser:page
       for="bika.lims.interfaces.IClient"
-      name="batches"
-      class="bika.wine.browser.client.batches.BatchesView"
-      permission="zope2.View"
-      layer="bika.lims.interfaces.IBikaLIMS"
-    />
-
-    <browser:page
-      for="bika.lims.interfaces.IClient"
       name="base_view"
       class="bika.wine.browser.client.analysisrequests.AnalysisRequestsView"
       permission="zope2.View"
