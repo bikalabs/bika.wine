@@ -1,6 +1,6 @@
 from bika.lims.exportimport.dataimport import SetupDataSetList as SDL
 from bika.lims.exportimport.setupdata import WorksheetImporter
-from bika.lims.idserver import renameAfterCreation
+#from bika.lims.idserver import renameAfterCreation  # Maybe processForm makes this unecessary.
 from bika.lims.interfaces import ISetupDataSetList
 from bika.lims.utils import tmpID
 from zope.interface import implements
@@ -24,8 +24,8 @@ class Storage_Conditions(WorksheetImporter):
                 obj = folder[_id]
                 obj.edit(title=row['title'],
                          description=row['description'])
-                obj.unmarkCreationFlag()
-                renameAfterCreation(obj)
+                obj.processForm()
+                #renameAfterCreation(obj)  # Maybe processForm makes this unecessary.
 
 
 class Transport_Conditions(WorksheetImporter):
@@ -38,8 +38,8 @@ class Transport_Conditions(WorksheetImporter):
                 obj = folder[_id]
                 obj.edit(title=row['title'],
                          description=row['description'])
-                obj.unmarkCreationFlag()
-                renameAfterCreation(obj)
+                obj.processForm()
+                #renameAfterCreation(obj)  # Maybe processForm makes this unecessary.
 
 
 class Wine_Types(WorksheetImporter):
@@ -52,8 +52,8 @@ class Wine_Types(WorksheetImporter):
                 obj = folder[_id]
                 obj.edit(title=row['title'],
                          description=row['description'])
-                obj.unmarkCreationFlag()
-                renameAfterCreation(obj)
+                obj.processForm()
+                #renameAfterCreation(obj)  # Maybe processForm makes this unecessary.
 
 class Cultivars(WorksheetImporter):
 
@@ -63,10 +63,12 @@ class Cultivars(WorksheetImporter):
             if 'title' in row and row['title']:
                 _id = folder.invokeFactory('Cultivar', id=tmpID())
                 obj = folder[_id]
-                obj.edit(title=row['title'],
-                         description=row['description'])
-                obj.unmarkCreationFlag()
-                renameAfterCreation(obj)
+                obj.edit(Code=row.get('code', ''),
+                         title=row['title'],
+                         description=row.get('description', ''),
+                         )
+                obj.processForm()
+                #renameAfterCreation(obj)  # Maybe processForm makes this unecessary.
 
 
 class Regions(WorksheetImporter):
@@ -82,8 +84,8 @@ class Regions(WorksheetImporter):
                     _id = folder.invokeFactory('Country', id=tmpID())
                     c_obj = folder[_id]
                     c_obj.edit(title=country)
-                    c_obj.unmarkCreationFlag()
-                    renameAfterCreation(c_obj)
+                    c_obj.processForm()
+                    #renameAfterCreation(c_obj)  # Maybe processForm makes this unecessary.
                     created[country] = {'obj': c_obj}
                 else:
                     c_obj = created[country]['obj']
@@ -91,6 +93,6 @@ class Regions(WorksheetImporter):
                     _id = c_obj.invokeFactory('Region', id=tmpID())
                     r_obj = c_obj[_id]
                     r_obj.edit(title=region)
-                    r_obj.unmarkCreationFlag()
-                    renameAfterCreation(r_obj)
+                    r_obj.processForm()
+                    #renameAfterCreation(r_obj)  # Maybe processForm makes this unecessary.
                     created[country][region] = r_obj
