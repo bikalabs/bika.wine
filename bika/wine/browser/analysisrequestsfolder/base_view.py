@@ -9,6 +9,8 @@ class AnalysisRequestsView(_ARV):
         self.columns.update({
             'WorksOrderID': {'title': _('Works Order ID')},
             'BlendNumber': {'title': _('Blend Number')},
+            'Cultivar': {'title': _('Cultivar')},
+            'Vintage': {'title': _('Vintage')},
         })
 
         new_states = []
@@ -16,6 +18,8 @@ class AnalysisRequestsView(_ARV):
             pos = state['columns'].index('BatchID') + 1
             state['columns'].insert(pos, 'BlendNumber')
             state['columns'].insert(pos, 'WorksOrderID')
+            state['columns'].insert(pos, 'Vintage')
+            state['columns'].insert(pos, 'Cultivar')
             new_states.append(state)
         self.review_states = new_states
 
@@ -25,6 +29,12 @@ class AnalysisRequestsView(_ARV):
             if not 'obj' in item:
                 continue
             obj = items[x]['obj']
+
+            val = obj.Schema().getField('Vintage').get(obj)
+            items[x]['Vintage'] = val
+
+            val = obj.Schema().getField('Cultivar').get(obj)
+            items[x]['Cultivar'] = val.Title() if val else ''
 
             batch = obj.Schema().getField('Batch').get(obj)
             if batch:

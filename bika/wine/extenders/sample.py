@@ -3,6 +3,7 @@ from archetypes.schemaextender.interfaces import ISchemaModifier
 from bika.wine import bikaMessageFactory as _
 from bika.lims.fields import *
 from bika.lims.browser.widgets import DateTimeWidget as bikaDateTimeWidget
+from bika.lims.browser.widgets import ReferenceWidget as bikaReferenceWidget
 from bika.lims.interfaces import ISample
 from bika.wine.utils import add_months
 from Products.Archetypes.public import *
@@ -14,17 +15,16 @@ from zope.interface import implements
 
 
 class BestBeforeDateField(ExtComputedField):
-
     """Field to calculate BestBeforeDate of a sample.  This is done using
     the "ShelfLife" field of the SampleType, added to either the DateSampled
     or the SamplingDate.
     """
 
     def getDefault(self, instance):
-            pc = getToolByName(instance, 'portal_catalog')
-            proxies = pc(portal_type='Client', sort_on='created')
-            if proxies:
-                return proxies[0].getObject()
+        pc = getToolByName(instance, 'portal_catalog')
+        proxies = pc(portal_type='Client', sort_on='created')
+        if proxies:
+            return proxies[0].getObject()
 
     def get(self, instance, **kwargs):
         bb = ''
@@ -80,13 +80,80 @@ class SampleSchemaExtender(object):
     implements(IOrderableSchemaExtender)
 
     fields = [
-        BestBeforeDateField('BestBeforeDate',
+        BestBeforeDateField(
+            'BestBeforeDate',
             widget=bikaDateTimeWidget(
-                label = "Best Before Date",
+                label="Best Before Date",
                 visible={'view': 'visible',
                          'edit': 'visible',
                          'header_table': 'visible'},
                 modes=('view', 'edit')
+            ),
+        ),
+        ExtStringField(
+            'Vintage',
+            required=False,
+            widget=StringWidget(
+                label="Vintage",
+                render_own_label=True,
+                size=20,
+                visible={'edit': 'visible',
+                         'view': 'visible',
+                         'header_table': 'visible',
+                         'sample_registered': {'view': 'visible',
+                                               'edit': 'visible',
+                                               'add': 'edit'},
+                         'to_be_sampled': {'view': 'visible',
+                                           'edit': 'visible'},
+                         'sampled': {'view': 'visible',
+                                     'edit': 'visible'},
+                         'to_be_preserved': {'view': 'visible',
+                                             'edit': 'visible'},
+                         'sample_due': {'view': 'visible',
+                                        'edit': 'visible'},
+                         'sample_received': {'view': 'visible',
+                                             'edit': 'visible'},
+                         'published': {'view': 'visible',
+                                       'edit': 'invisible'},
+                         'invalid': {'view': 'visible',
+                                     'edit': 'invisible'},
+                         },
+            ),
+        ),
+        ExtReferenceField(
+            'Cultivar',
+            required=0,
+            allowed_types=('Cultivar'),
+            relationship='SampleTypeCultivar',
+            format='select',
+            widget=bikaReferenceWidget(
+                label="Cultivar",
+                render_own_label=True,
+                size=20,
+                catalog_name='bika_setup_catalog',
+                base_query={'inactive_state': 'active'},
+                showOn=True,
+                visible={'edit': 'visible',
+                         'view': 'visible',
+                         'header_table': 'visible',
+                         'sample_registered': {'view': 'visible',
+                                               'edit': 'visible',
+                                               'add': 'edit'},
+                         'to_be_sampled': {'view': 'visible',
+                                           'edit': 'visible'},
+                         'sampled': {'view': 'visible',
+                                     'edit': 'visible'},
+                         'to_be_preserved': {'view': 'visible',
+                                             'edit': 'visible'},
+                         'sample_due': {'view': 'visible',
+                                        'edit': 'visible'},
+                         'sample_received': {'view': 'visible',
+                                             'edit': 'visible'},
+                         'published': {'view': 'visible',
+                                       'edit': 'invisible'},
+                         'invalid': {'view': 'visible',
+                                     'edit': 'invisible'},
+                         },
             ),
         ),
     ]
@@ -96,9 +163,14 @@ class SampleSchemaExtender(object):
 
     def getOrder(self, schematas):
         default = schematas['default']
+        # after SamplingDate
         if 'BestBeforeDate' in default:
             default.remove('BestBeforeDate')
         default.insert(default.index('SamplingDate'), 'BestBeforeDate')
+        # after SampleID
+        pos = default.index('SampleID')
+        default.insert(pos, 'Vintage')
+        default.insert(pos, 'Cultivar')
         return schematas
 
     def getFields(self):

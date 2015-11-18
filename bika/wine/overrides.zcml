@@ -9,5 +9,6 @@
     <include file="browser/batch/overrides.zcml"/>
     <include file="browser/batchfolder/overrides.zcml"/>
     <include file="browser/client/overrides.zcml"/>
+    <include file="browser/samplesfolder/overrides.zcml"/>
 
 </configure>
