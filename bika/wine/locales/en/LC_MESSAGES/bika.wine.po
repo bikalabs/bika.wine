@@ -163,7 +163,7 @@ msgstr ""
 
 # 
 # File: ../extenders/sampletype.py, line: 47
-msgid "Varietal"
+msgid "Cultivar"
 msgstr ""
 
 # 
