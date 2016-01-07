@@ -156,6 +156,35 @@ class SampleSchemaExtender(object):
                          },
             ),
         ),
+        ExtStringField(
+            'Tank',
+            widget=StringWidget(
+                label=_("Tank"),
+                description=_("Tank identifier"),
+                visible={'edit': 'visible',
+                         'view': 'visible',
+                         'header_table': 'visible',
+                         'sample_registered': {'view': 'visible',
+                                               'edit': 'visible',
+                                               'add': 'edit'},
+                         'to_be_sampled': {'view': 'visible',
+                                           'edit': 'visible'},
+                         'sampled': {'view': 'visible',
+                                     'edit': 'visible'},
+                         'to_be_preserved': {'view': 'visible',
+                                             'edit': 'visible'},
+                         'sample_due': {'view': 'visible',
+                                        'edit': 'visible'},
+                         'sample_received': {'view': 'visible',
+                                             'edit': 'visible'},
+                         'published': {'view': 'visible',
+                                       'edit': 'invisible'},
+                         'invalid': {'view': 'visible',
+                                     'edit': 'invisible'},
+                         },
+                render_own_label=True,
+            ),
+        ),
     ]
 
     def __init__(self, context):
@@ -171,6 +200,7 @@ class SampleSchemaExtender(object):
         pos = default.index('SampleID')
         default.insert(pos, 'Vintage')
         default.insert(pos, 'Cultivar')
+        default.insert(pos, 'Tank')
         return schematas
 
     def getFields(self):

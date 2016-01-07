@@ -9,12 +9,13 @@ class SamplesView(_SV):
         self.columns.update({
             'Cultivar': {'title': _('Cultivar')},
             'Vintage': {'title': _('Vintage')},
-
+            'Tank': {'title': _('Tank')},
         })
 
         new_states = []
         for state in self.review_states:
             pos = state['columns'].index('Requests') + 1
+            state['columns'].insert(pos, 'Tank')
             state['columns'].insert(pos, 'Vintage')
             state['columns'].insert(pos, 'Cultivar')
             new_states.append(state)
@@ -26,6 +27,8 @@ class SamplesView(_SV):
             if not 'obj' in item:
                 continue
             obj = items[x]['obj']
+
+            items[x]['Tank'] = obj.Schema().getField('Tank').get(obj)
 
             val = obj.Schema().getField('Vintage').get(obj)
             items[x]['Vintage'] = val
