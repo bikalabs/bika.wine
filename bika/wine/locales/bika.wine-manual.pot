@@ -32,18 +32,3 @@ msgstr "yy-mm-dd"
 #. ${S}, ${Y}, ${y}, ${Z}, each used as variable in the msgstr.
 msgid "time_format"
 msgstr "${I}:${M} ${p}"
-
-msgid "Batch"
-msgstr "Group"
-
-msgid "Batch ID"
-msgstr "Group ID"
-
-msgid "Batches"
-msgstr "Groups"
-
-msgid "Sample Type"
-msgstr "Product"
-
-msgid "Sample Types"
-msgstr "Products"
