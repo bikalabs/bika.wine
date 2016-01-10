@@ -40,6 +40,21 @@ class CultivarField(ExtReferenceField):
             sample.Schema()['Cultivar'].set(sample, value)
 
 
+class TankField(ExtStringField):
+    """A computed field which sets and gets a value from Sample
+    """
+
+    def get(self, instance):
+        sample = instance.getSample()
+        if sample:
+            return sample.Schema()['Tank'].get(sample)
+
+    def set(self, instance, value):
+        sample = instance.getSample()
+        if sample and value:
+            sample.Schema()['Tank'].set(sample, value)
+
+
 class AnalysisRequestSchemaExtender(object):
     adapts(IAnalysisRequest)
     implements(IOrderableSchemaExtender)
@@ -155,6 +170,46 @@ class AnalysisRequestSchemaExtender(object):
                 },
             ),
         ),
+        TankField(
+            'Tank',
+            widget=StringWidget(
+                label=_("Tank"),
+                description=_("Tank identifier"),
+                render_own_label=True,
+                size=20,
+                visible={
+                    'edit': 'visible',
+                    'view': 'visible',
+                    'add': 'edit',
+                    'secondary': 'disabled',
+                    'header_table': 'visible',
+                    'sample_registered': {
+                        'view': 'visible',
+                        'edit': 'visible',
+                        'add': 'edit'},
+                    'to_be_sampled': {'view': 'visible',
+                                      'edit': 'invisible'},
+                    'sampled': {'view': 'visible',
+                                'edit': 'invisible'},
+                    'to_be_preserved': {'view': 'visible',
+                                        'edit': 'invisible'},
+                    'sample_due': {'view': 'visible',
+                                   'edit': 'invisible'},
+                    'sample_received': {'view': 'visible',
+                                        'edit': 'invisible'},
+                    'attachment_due': {'view': 'visible',
+                                       'edit': 'invisible'},
+                    'to_be_verified': {'view': 'visible',
+                                       'edit': 'invisible'},
+                    'verified': {'view': 'visible',
+                                 'edit': 'invisible'},
+                    'published': {'view': 'visible',
+                                  'edit': 'invisible'},
+                    'invalid': {'view': 'visible',
+                                'edit': 'invisible'},
+                },
+            ),
+        ),
     ]
 
     def __init__(self, context):
@@ -170,6 +225,7 @@ class AnalysisRequestSchemaExtender(object):
         pos = schematas['default'].index('SampleType')
         schematas['default'].insert(pos, 'Vintage')
         schematas['default'].insert(pos, 'Cultivar')
+        schematas['default'].insert(pos, 'Tank')
         return schematas
 
     def getFields(self):

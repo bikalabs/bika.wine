@@ -11,6 +11,7 @@ class AnalysisRequestsView(_ARV):
             'BlendNumber': {'title': _('Blend Number')},
             'Cultivar': {'title': _('Cultivar')},
             'Vintage': {'title': _('Vintage')},
+            'Tank': {'title': _('Tank')},
         })
 
         new_states = []
@@ -18,6 +19,7 @@ class AnalysisRequestsView(_ARV):
             pos = state['columns'].index('BatchID') + 1
             state['columns'].insert(pos, 'BlendNumber')
             state['columns'].insert(pos, 'WorksOrderID')
+            state['columns'].insert(pos, 'Tank')
             state['columns'].insert(pos, 'Vintage')
             state['columns'].insert(pos, 'Cultivar')
             new_states.append(state)
@@ -35,6 +37,8 @@ class AnalysisRequestsView(_ARV):
 
             val = obj.Schema().getField('Cultivar').get(obj)
             items[x]['Cultivar'] = val.Title() if val else ''
+
+            items[x]['Tank'] = obj.Schema().getField('Tank').get(obj)
 
             batch = obj.Schema().getField('Batch').get(obj)
             if batch:

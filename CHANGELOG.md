@@ -1,4 +1,4 @@
-0.1 - 2013-06-04
-================
+2016-01-07
+==========
 
-First commit
+WINE-103: Added Tank field to AR and Sample views
