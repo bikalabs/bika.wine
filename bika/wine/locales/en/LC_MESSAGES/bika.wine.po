@@ -12,206 +12,174 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: bika.wine\n"
+"Domain: DOMAIN\n"
 
-# 
+#
+# File: ../browser/country/base_view.py, line: 21
+msgid "Add Region"
+msgstr ""
+
+#
 # File: ../controlpanel/bika_regions.py, line: 24
 msgid "Add country"
 msgstr ""
 
-# 
-msgid "Batch"
-msgstr "Group"
-
-# 
+#
+# File: ../browser/batchfolder/base_view.py, line: 16
 msgid "Batch ID"
-msgstr "Group ID"
+msgstr ""
 
-# 
-msgid "Batches"
-msgstr "Groups"
+#
+# File: ../profiles.zcml, line: 11
+msgid "Bika Wine LIMS"
+msgstr ""
 
-# 
+#
 # File: ../browser/batchfolder/base_view.py, line: 19
 msgid "Blend Name"
 msgstr ""
 
-# 
-# File: ../extenders/batch.py, line: 63
+#
+# File: ../browser/analysisrequestsfolder/base_view.py, line: 11
 msgid "Blend Number"
 msgstr ""
 
-# 
+#
+# File: ../extenders/analysisrequest.py, line: 128
+msgid "Code"
+msgstr ""
+
+#
+# File: ../content/cultivar.py, line: 16
+msgid "Code to quickly identify the cultivar"
+msgstr ""
+
+#
 # File: ../controlpanel/bika_regions.py, line: 39
-# File: ../extenders/sampletype.py, line: 65
 msgid "Country"
 msgstr ""
 
-# 
-# File: ../extenders/batch.py, line: 95
-msgid "Include all analysis requests belonging to the selected objects."
+#
+# File: ../browser/analysisrequestsfolder/base_view.py, line: 12
+# File: ../browser/samplesfolder/base_view.py, line: 10
+# File: ../controlpanel/bika_cultivars.py, line: 39
+msgid "Cultivar"
 msgstr ""
 
-# 
-# File: ../extenders/batch.py, line: 94
-msgid "Inherit From"
+#
+# File: ../content/cultivar.py, line: 15
+msgid "Cultivar Code"
 msgstr ""
 
-# 
-# File: ../extenders/batch.py, line: 77
-# File: ../extenders/sampletype.py, line: 54
-msgid "Label Alcohol"
+#
+# File: ../controlpanel/bika_cultivars.py, line: 31
+msgid "Cultivars"
 msgstr ""
 
-# 
-# File: ../browser/batch/workflowaction.py, line: 47
-msgid "No analyses have been selected"
+#
+# File: ../extenders/analysisrequest.py, line: 135
+msgid "Description"
 msgstr ""
 
-# 
-# File: ../extenders/batch.py, line: 90
-msgid "Object ID"
+#
+# File: ../profiles.zcml, line: 11
+msgid "Extension profile for the Bika Wine LIMS"
 msgstr ""
 
-# 
-# File: ../extenders/sampletype.py, line: 84
+#
+# File: ../browser/country/base_view.py, line: 36
 msgid "Region"
 msgstr ""
 
-# 
+#
 # File: ../controlpanel/bika_regions.py, line: 31
 msgid "Regions"
 msgstr ""
 
-# 
-msgid "Sample Type"
-msgstr "Product"
-
-# 
-msgid "Sample Types"
-msgstr "Products"
-
-# 
-# File: ../extenders/sampletype.py, line: 129
-msgid "Shelf life"
-msgstr ""
-
-# 
-# File: ../extenders/sampletype.py, line: 130
-msgid "Shelf life in months"
-msgstr ""
-
-# 
-# File: ../extenders/sampletype.py, line: 122
-msgid "Shelf life text to be printed on COA"
-msgstr ""
-
-# 
-# File: ../extenders/sampletype.py, line: 121
-msgid "Shelf life type"
-msgstr ""
-
-# 
-# File: ../content/subgroup.py, line: 14
-# File: ../controlpanel/bika_subgroups.py, line: 45
-msgid "Sort Key"
-msgstr ""
-
-# 
+#
 # File: ../controlpanel/bika_storageconditions.py, line: 40
 msgid "Storage condition"
 msgstr ""
 
-# 
+#
 # File: ../controlpanel/bika_storageconditions.py, line: 32
-# File: ../extenders/sampletype.py, line: 113
 msgid "Storage conditions"
 msgstr ""
 
-# 
-# File: ../browser/batch/batchbookview.py, line: 47
-# File: ../controlpanel/bika_subgroups.py, line: 40
-# File: ../extenders/analysisrequest.py, line: 26
-msgid "Sub-group"
+#
+# File: ../browser/analysisrequestsfolder/base_view.py, line: 14
+# File: ../browser/samplesfolder/base_view.py, line: 12
+# File: ../extenders/analysisrequest.py, line: 176
+msgid "Tank"
 msgstr ""
 
-# 
-# File: ../controlpanel/bika_subgroups.py, line: 32
-msgid "Sub-groups"
+#
+# File: ../extenders/analysisrequest.py, line: 177
+# File: ../extenders/sample.py, line: 163
+msgid "Tank identifier"
 msgstr ""
 
-# 
-# File: ../content/subgroup.py, line: 15
-msgid "Subgroups are sorted with this key in group views"
-msgstr ""
-
-# 
-# File: ../extenders/batch.py, line: 101
+#
+# File: ../extenders/analysisrequest.py, line: 131
+# File: ../extenders/sampletype.py, line: 91
 msgid "Title"
 msgstr ""
 
-# 
+#
 # File: ../controlpanel/bika_transportconditions.py, line: 40
 msgid "Transport condition"
 msgstr ""
 
-# 
+#
 # File: ../controlpanel/bika_transportconditions.py, line: 32
-# File: ../extenders/sampletype.py, line: 102
 msgid "Transport conditions"
 msgstr ""
 
-# 
-# File: ../extenders/sampletype.py, line: 47
-msgid "Cultivar"
-msgstr ""
-
-# 
-# File: ../extenders/sampletype.py, line: 21
+#
+# File: ../browser/analysisrequestsfolder/base_view.py, line: 13
+# File: ../browser/samplesfolder/base_view.py, line: 11
 msgid "Vintage"
 msgstr ""
 
-# 
+#
 # File: ../controlpanel/bika_winetypes.py, line: 39
-# File: ../extenders/sampletype.py, line: 32
 msgid "Wine type"
 msgstr ""
 
-# 
+#
 # File: ../controlpanel/bika_winetypes.py, line: 31
 msgid "Wine types"
 msgstr ""
 
-# 
+#
+# File: ../browser/analysisrequestsfolder/base_view.py, line: 10
 # File: ../browser/batchfolder/base_view.py, line: 18
-# File: ../extenders/batch.py, line: 56
 msgid "Works Order ID"
 msgstr ""
 
-# 
+#
 #. Supported are ${A}, ${a}, ${B}, ${b}, ${H}, ${I}, ${m}, ${d}, ${M}, ${p},
 #. ${S}, ${Y}, ${y}, ${Z}, each used as variable in the msgstr.
 msgid "date_format_long"
 msgstr "${Y}-${m}-${d} ${I}:${M} ${p}"
 
-# 
+#
 #. The variables used here are the same as used in the strftime formating.
 #. Supported are ${A}, ${a}, ${B}, ${b}, ${H}, ${I}, ${m}, ${d}, ${M}, ${p},
 #. ${S}, ${Y}, ${y}, ${Z}, each used as variable in the msgstr.
 msgid "date_format_short"
 msgstr "${Y}-${m}-${d}"
 
-# 
+#
 #. Date format used with the datepicker jqueryui plugin.
 #. Please only use 'dd', 'mm', 'yy', '-', '/', '.' in this string.
 #. Default: "mm/dd/yy"
 msgid "date_format_short_datepicker"
 msgstr "yy-mm-dd"
 
-# 
+#
 #. The variables used here are the same as used in the strftime formating.
 #. Supported are ${A}, ${a}, ${B}, ${b}, ${H}, ${I}, ${m}, ${d}, ${M}, ${p},
 #. ${S}, ${Y}, ${y}, ${Z}, each used as variable in the msgstr.
 msgid "time_format"
 msgstr "${I}:${M} ${p}"
-

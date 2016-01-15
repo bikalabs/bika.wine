@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ZINSTANCE=~/Plone/zinstance
+ZINSTANCE=~/Plone/zeocluster
 I18NDUDE=$ZINSTANCE/bin/i18ndude
 
 # Flush the english (transifex source language) po files
