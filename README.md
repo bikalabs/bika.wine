@@ -1,19 +1,13 @@
-Bika Wine
-=========
+Bika LIMS development stops. Long live
 
-Bika Laboratory Information Management System.
+Reports on the passing of Bika Open Source LIMS are premature
+=============================================================
 
-Code customised for wine laboratories.
+The repos here, like the wiki, are for now maintained for historic purposes only
+---------------------------------------------------------------------------------
 
-If you have questions, please post to one of our mailing lists:
+**Please use the latest Senaite code**
 
-* Users: http://lists.sourceforge.net/lists/listinfo/bika-users
-* LIMS design: https://groups.google.com/forum/?hl=en#%21forum/bika-design
-* Developers: http://lists.sourceforge.net/lists/listinfo/bika-developers
+Bika add-ons to be released, use Senaite as core, and Bika continues to contribute our code to the Senaite repos. Full story: https://www.bikalims.org/news/Bika_LIMS_death_premature.
 
-Please log issues, feature requests, or bug reports in the public issue
-tracker at Github: https://github.com/bikalabs/Bika-LIMS/issues
-
-Bika Lab Systems
-info@bikalabs.com
-http://www.bikalabs.com
+Thanks, Lemoene
